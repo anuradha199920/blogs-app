@@ -183,7 +183,6 @@ export async function fetchPaginatedPosts([skip , first]: Number[]){
           }
         `;
         const result: { posts: Post[] } = await request(graphqlAPI, document, {skip, first});
-        console.log(result.posts)
         return result.posts;
     }catch (error){
         console.error("Error fetching post's slugs:", error);

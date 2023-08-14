@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image"
 
 const PostCard: React.FC<any> = ({post}: {post: Post})=> {
-    {console.log(post);}
+
     return (
         <div className="group cursor-pointer">
             <div className="overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105   dark:bg-gray-800">

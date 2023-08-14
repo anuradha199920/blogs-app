@@ -12,16 +12,10 @@ export default function FeaturedPosts({ posts}:{ posts: Post[]}){
                 </div>
                 <div className="grid gap-10 mt-10 mb-20 lg:gap-10 md:grid-cols-3 lg:grid-cols-4 ">
                     <div className=" container md:col-span-2 md:row-span-2">
-                        <OgImageHome post={posts[0]}/>
+                        <OgImageHome key={posts[0].id} post={posts[0]}/>
                     </div>
-                    {posts.slice(1, 5).map(post =>{
-                        return <PostCard post={post}/>
-                    })}
-                    {posts.slice(1, 5).map(post =>{
-                        return <PostCard post={post}/>
-                    })}
-                    {posts.slice(1, 3).map(post =>{
-                        return <PostCard post={post}/>
+                    {posts.slice(1, 8).map(post =>{
+                        return <PostCard key={post.id} post={post}/>
                     })}
                 </div>
                 <div className="mt-10 flex justify-center">

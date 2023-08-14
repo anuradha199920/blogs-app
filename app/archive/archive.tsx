@@ -33,7 +33,6 @@ export default function Archive({ initialposts }:{ initialposts: Post[]}) {
     } = useSWR( paramsForQuery, fetchPaginatedPosts, {
       fallbackData: initialposts,
       onSuccess: (data) => {
-        console.log(data);
         setIsLoading(false);
       }
     });

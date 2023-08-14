@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import {PostCard, PostWidget, Categories, Post, ThemeSwitch, HorizontalCard, FeaturedPosts, FancyAboutSection} from "@/components";
-import {fetchPosts} from "@/utils";
+import {fetchPaginatedPosts, fetchPosts} from "@/utils";
 
 export default async function Home () {
-    const posts: Post[] | undefined = await fetchPosts();
+    const posts: Post[] | undefined = await fetchPaginatedPosts([0, 6]);
     const horizontalCard = ()=>{
         if(posts!==undefined && posts[0]!==undefined){
             return <HorizontalCard post={posts[0]} />
