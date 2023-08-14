@@ -82,7 +82,7 @@ export default function PostDetail({post}: {post: Post}){
             case 'code-block':
                 if(isCodeBlockNode(obj)){
                     return <div className="my-8 w-full" key={index}>                        
-                        <TweetEmbed className="w-full" tweetId={obj.children[0].text} placeholder={'loading...'} options={{theme: 'dark', cards: 'hidden', align:'center', conversation: 'none'}}/>
+                        <TweetEmbed className="w-full" tweetId={obj.children[0].text} placeholder={'loading...'} options={{theme: 'dark', align:'center', conversation: 'none'}}/>
                     </div>}
             case 'image':
                 {if(isImageNode(obj)){
