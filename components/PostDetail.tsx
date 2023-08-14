@@ -67,6 +67,7 @@ export default function PostDetail({post}: {post: Post}){
 
     const getContentFragment = (obj: HeadingNode | ParagraphNode | CodeBlockNode | ImageNode, index: number) => {
         switch (obj.type) {
+            
             case 'heading-three':
                 {if(isHeadingNode(obj)) {
                     return (<h3 className="text-xl font-semibold mb-4" key={index}>{getFragements(obj.children, index)}</h3>)
@@ -81,8 +82,13 @@ export default function PostDetail({post}: {post: Post}){
                 }
             case 'code-block':
                 if(isCodeBlockNode(obj)){
-                    return <div className="my-8 w-full" key={index}>                        
-                        <TweetEmbed className="w-full" tweetId={obj.children[0].text} placeholder={'loading...'} options={{theme: 'dark', align:'center', conversation: 'none'}}/>
+                    return <div className="my-8 w-200 min-h-[40vh]" key={index}>                        
+                        <TweetEmbed 
+                            className="w-full" 
+                            tweetId={obj.children[0].text} 
+                            placeholder={'loading...'} 
+                            options={{theme: 'dark', align:'center', conversation: 'none'}}
+                            />
                     </div>}
             case 'image':
                 {if(isImageNode(obj)){

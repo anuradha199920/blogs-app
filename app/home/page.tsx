@@ -1,22 +1,16 @@
 import Image from 'next/image'
 import {PostCard, PostWidget, Categories, Post, ThemeSwitch, HorizontalCard, FeaturedPosts, FancyAboutSection} from "@/components";
 import {fetchPaginatedPosts, fetchPosts} from "@/utils";
+import Archive from '../archive/archive';
+const POSTS_PER_PAGE = 6;
+
 
 export default async function Home () {
-    const posts: Post[] | undefined = await fetchPaginatedPosts([0, 9]);
-    const horizontalCard = ()=>{
-        if(posts!==undefined && posts[0]!==undefined){
-            return <HorizontalCard post={posts[0]} />
-        }
-    };
+    const initialposts = await fetchPaginatedPosts([0,POSTS_PER_PAGE]);
     return (
         <main className="overflow-hidden">
-            {/* <FancyAboutSection post={posts[0]}/> */}
             <section>
-                {horizontalCard()}
-                <div className="container mt-10 mx-auto">
-                    <FeaturedPosts posts={posts}/>
-                </div>
+                <Archive initialposts={initialposts} />;
                 <ThemeSwitch />
             </section>
             

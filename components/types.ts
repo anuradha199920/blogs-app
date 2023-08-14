@@ -95,4 +95,3 @@ export interface HeadingNode {
     type: string;
     children: TextNode[];
 }
-
