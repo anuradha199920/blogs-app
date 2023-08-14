@@ -1,27 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+@import "prism.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+.container-fluid{
+  width: 100%;
+  position: relative;
+  --padding-x: 2rem;
+  --padding-y: 0;
+  padding-right: calc(var(--padding-x) * .5);
+  padding-left: calc(var(--padding-y) * .5);
+  margin-right: auto;
+  margin-left: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.devices-wrapper {
+  -webkit-transform: translateY(-50%) rotate(45deg);
+  -ms-transform: translateY(-50%) rotate(45deg);
+  transform: translateY(-50%) rotate(45deg);
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  width: 56.25rem;
+  height: 56.25rem;
+}
+
+
+@media (min-width: 1400px){
+  .devices-wrapper {
+    left: 25%;
+    width: 100rem;
+    height: 100rem;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@media (min-width: 1200px){
+  .devices-wrapper {
+      left: 40%;
+      width: 75rem;
+      height: 75rem;
+  }
 }
+
+@media (min-width: 992px){
+  .devices-wrapper {
+    left: 50%;
+    width: 68.75rem;
+    height: 68.75rem;
+  }
+}
+
+@media (min-width: 768px){
+  .devices-wrapper {
+    left: 60%;
+    width: 75rem;
+    height: 75rem;
+  }
+}
+
+@media (min-width: 576px){
+  .devices-wrapper {
+      left: 70%;
+      width: 31.25rem;
+      height: 31.25rem;
+  }
+}
+
+.devices-wrapper .macbook-1 {
+  left: 42%;
+  top: 63%;
+}
+.devices-wrapper .macbook-2 {
+  left: 22%;
+  top: 10%;
+}
+
+.devices-wrapper [class*=macbook-] {
+  width: 80%;
+  position: absolute;
+}
+
+.devices-wrapper .device {
+  width: 100% !important;
+  border-radius: 0.5rem;
+  border: 0.25rem solid rgba(190,190,190,.1);
+  -webkit-box-shadow: 0.125rem 0.125rem 1.25rem 0 rgba(0,0,0,.3);
+  box-shadow: 0.125rem 0.125rem 1.25rem 0 rgba(0,0,0,.3);
+  width: 6.25rem;
+  -webkit-transition: -webkit-transform 2s cubic-bezier(0.77, 0, 0.18, 1);
+  transition: -webkit-transform 2s cubic-bezier(0.77, 0, 0.18, 1);
+  -o-transition: transform 2s cubic-bezier(0.77, 0, 0.18, 1);
+  transition: transform 2s cubic-bezier(0.77, 0, 0.18, 1);
+  transition: transform 2s cubic-bezier(0.77, 0, 0.18, 1), -webkit-transform 2s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.translate-custom-3d{
+  transform: translate3d('0px', '0px', '0px');
+}
+
+.devices-wrapper .ipad--l-1 {
+  left: -20%;
+  top: 8%;
+}
+
+.devices-wrapper [class*=ipad--l-] {
+  width: 58%;
+  position: absolute;
+}
+
+.devices-wrapper .iphone-1 {
+  left: 10%;
+  top: 8%;
+}
+
+.devices-wrapper [class*=iphone-] {
+  width: 30%;
+  position: absolute;
+}
+
+.devices-wrapper .ipad--l-2 {
+  left: 48%;
+  top: 8%;
+}
+
+
+/* html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  &:before{
+    content:'';
+    width: 100%;
+    height: 100vh;
+    /*background: #D3D3D3;*/
+    /*background-image: url("../public/bg.jpg");*/
+    /* position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background: linear-gradient(to right bottom, #0a0a0a, #181717, #232425, #26282a) no-repeat 50% 50%;
+    background-size: cover;
+  }
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+.text-shadow{
+  text-shadow: 0 2px 0 rgb(0 0 0 / 30%);
+}
+
+.adjacent-post{
+  & .arrow-btn{
+    transition: width 300ms ease;
+    width: 50px;
+  }
+  &:hover{
+    & .arrow-btn{
+      width: 60px;
+    }
+  }
+}
+
+.react-multi-carousel-list {
+  & .arrow-btn{
+    transition: width 300ms ease;
+    width: 50px;
+    &:hover{
+      width: 60px;
+    }
+  }
+
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+} */ 
