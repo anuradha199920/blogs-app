@@ -14,7 +14,7 @@ export default function FeaturedPosts({ posts}:{ posts: Post[]}){
                     <div className=" container md:col-span-2 md:row-span-2">
                         <OgImageHome key={posts[0].id} post={posts[0]}/>
                     </div>
-                    {posts.slice(1, 8).map(post =>{
+                    {posts.map(post =>{
                         return <PostCard key={post.id} post={post}/>
                     })}
                 </div>

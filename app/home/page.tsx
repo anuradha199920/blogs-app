@@ -3,7 +3,7 @@ import {PostCard, PostWidget, Categories, Post, ThemeSwitch, HorizontalCard, Fea
 import {fetchPaginatedPosts, fetchPosts} from "@/utils";
 
 export default async function Home () {
-    const posts: Post[] | undefined = await fetchPaginatedPosts([0, 6]);
+    const posts: Post[] | undefined = await fetchPaginatedPosts([0, 9]);
     const horizontalCard = ()=>{
         if(posts!==undefined && posts[0]!==undefined){
             return <HorizontalCard post={posts[0]} />
