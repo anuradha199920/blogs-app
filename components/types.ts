@@ -77,7 +77,6 @@ export interface ImageNode {
     width: number;
     handle: string;
     height: number;
-    
     mimeType: string;
 }
 
@@ -95,3 +94,55 @@ export interface HeadingNode {
     type: string;
     children: TextNode[];
 }
+
+export class MarketOverviewProps{
+    highestSale: number | undefined;
+    buyers: number | undefined;
+    organicVolume: number | undefined;
+    sales: number | undefined;
+    sellers: number | undefined;
+    time: string | undefined;
+    washVolume: number | undefined;
+    washVolumePercentage: number | undefined;
+    constructor(highestSale: any, buyers: any, sellers: any, organicVolume: any, sales: any, time: any, washVolume: any, washVolumePercentage: any){
+        this.highestSale =highestSale;
+        this.buyers = buyers;
+        this.sellers = sellers;
+        this.sales = sales;
+        this.time = time;
+        this.organicVolume = organicVolume;
+        this.washVolume = washVolume;
+        this.washVolumePercentage =  washVolumePercentage;
+    }
+}
+
+export interface MarketStatisticsProps{
+    buyers: number;
+    eth0: number;
+    eth1: number;
+    eth2: number;
+    sales: number;
+    sellers: number;
+    time: string;
+    volume: number;
+}
+
+export interface AreaChartState {
+    series: {
+      name: string;
+      data: {
+        x: string;
+        y: number;
+      }[];
+    }[];
+  }
+
+ export interface BarChartState {
+    series: {
+        name: string;
+        data: {
+          x: string;
+          y: number;
+        }[];
+      }[];
+  }

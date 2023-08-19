@@ -49,6 +49,42 @@
   @apply text-gray-500;
 }
 
+@layer utilities {
+  .text-gray-500 {
+    color: #302d2dfd;
+  }
+  .text-gray-400 {
+    color: #464242fd;
+  }
+  .text-fuchsia-500 {
+    color: #c71783fd
+  }
+  .text-cyan-500{
+    color: #1072aa
+  }
+  .text-cyan-400{
+    color: #3882ad
+  }
+  .text-blue-500{
+    color: rgb(46, 46, 214)
+  }
+  .text-slate-500 {
+    color: #504646fd;
+  }
+  .bg-rose-400{
+    color: rgb(243, 63, 243)
+  }
+  .text-emerald-200{
+    color: rgb(7, 92, 7)
+  }
+  .bg-emerald-700{
+    background: rgb(2, 100, 2);
+  }
+  .bg-sky-300{
+    color: rgb(170, 216, 253)
+  }
+}
+
 .token.deleted:not(.prefix) {
   @apply relative block -mx-4 px-4;
 }
@@ -71,5 +107,5 @@
 }
 
 .refractor-marker {
-  @apply bg-sky-300/10;
+  @apply bg-sky-300;
 }

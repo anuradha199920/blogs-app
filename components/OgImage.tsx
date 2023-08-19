@@ -1,12 +1,13 @@
 import {Post} from "@/components/types";
 import moment from "moment";
 import Link from "next/link";
+import Image from "next/image"
 
 export default function OgImage({post}: {post: Post}){
     return (
         <div className="relative z-0 flex min-h-[calc(100vh-30vh)] items-center">
             <div className="absolute -z-10 h-full w-full before:absolute before:z-10 before:h-full before:w-full before:bg-black/30">
-                <img alt="Thumbnail" loading="eager" decoding="async" data-nimg="fill" className="object-cover bg-transparent h-full w-full absolute inset-0" sizes="100vw" src={post.featuredImage.url}/>
+                <Image alt="Thumbnail" loading="eager" decoding="async" data-nimg="fill" className="object-cover bg-transparent h-full w-full absolute inset-0" sizes="100vw" src={post.featuredImage.url} width={'100'} height={'100'}/>
             </div>
             <div className="mx-auto max-w-screen-md px-5 py-20">
                 <h1 className="mb-3 mt-2 text-3xl font-semibold tracking-tight text-white lg:text-5xl lg:leading-tight">
@@ -17,7 +18,7 @@ export default function OgImage({post}: {post: Post}){
                         <div className="flex gap-3">
                             <div className="relative h-5 w-5 flex-shrink-0">
                                 <Link href="/about">
-                                    <img alt={post.author.name} loading="lazy" decoding="async" data-nimg="fill" className="rounded-full object-cover bg-transparent h-full w-full absolute inset-0" sizes="100vw" src={post.author.profilePicture.url} />
+                                    <Image alt={post.author.name} loading="lazy" decoding="async" data-nimg="fill" className="rounded-full object-cover bg-transparent h-full w-full absolute inset-0" sizes="100vw" src={post.author.profilePicture.url} width={'100'} height={'100'}/>
                                 </Link>
                             </div>
                             <p className="text-gray-100 ">

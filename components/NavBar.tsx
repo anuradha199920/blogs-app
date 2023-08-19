@@ -26,8 +26,8 @@ export default function Navbar() {
       href: "/tweets"
     },
     {
-      label: "Graphs",
-      href: "/graphs"
+      label: "Dashboard",
+      href: "/dashboard"
     }
   ];
 
@@ -35,7 +35,7 @@ export default function Navbar() {
   return (
     <Container>
       <nav>
-        <Disclosure>
+        <Disclosure key={"navBarDisclosure"}>
           {({ open }) => (
             <>
               <div className="flex flex-wrap justify-between md:flex-nowrap md:gap-10">
@@ -53,13 +53,14 @@ export default function Navbar() {
                 </div>
                 <div className="flex w-full items-center justify-between md:w-auto">
                     <Link href="/home">
-                        <span className="px-5 py-2 text-gray-800 hover:text-blue-500 dark:text-gray-400 cursor-pointer font-bold text-4xl ">
+                        <span className="px-5 py-2 text-gray-800 hover:text-blue-500 dark:text-gray-400 cursor-pointer font-bold text-4xl drop-shadow-lg d">
                             Blogs
                         </span>
                     </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
-                    className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-blue-500 focus:outline-none dark:text-gray-300 md:hidden ">
+                    className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-blue-500 focus:outline-none dark:text-gray-300 md:hidden"
+                    key="navBarButton">
                     <svg
                       className="h-6 w-6 fill-current"
                       xmlns="http://www.w3.org/2000/svg"

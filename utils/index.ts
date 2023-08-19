@@ -1,7 +1,31 @@
 import { request, gql } from 'graphql-request'
+import axios from 'axios';
 import {Category, Post, PostsConnection} from "@/components";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!;
+const duneAPI = process.env.DUNE_API!;
+
+export async function fetchDuneData(queryId: string){
+    try{
+        const response = await fetch(duneAPI.replace('queryId', queryId), { next: { revalidate: 3600*6 } });
+        if (!response.ok) {
+            throw new Error('Failed to fetch data')
+          }
+        return await response.json();
+    }catch(err){
+        console.error(err);
+    }
+    
+    return axios.get(duneAPI.replace('queryId', queryId))
+        .then(response => {
+            // Handle response
+            return response.data.result.rows;
+        })
+        .catch(err => {
+            // Handle errors
+            console.error(err);
+        });
+}
 
 export async function fetchPosts(){
     try {

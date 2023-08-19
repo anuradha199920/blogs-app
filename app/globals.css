@@ -129,6 +129,9 @@
   top: 8%;
 }
 
+.apexcharts-tooltip {
+  background-color: #ffffff00;
+}
 
 /* html,
 body {
