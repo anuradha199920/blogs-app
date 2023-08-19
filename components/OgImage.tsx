@@ -31,7 +31,7 @@ export default function OgImage({post}: {post: Post}){
                                 <time className="text-white"  dateTime={post.createdAt}> 
                                     <span className="align-middle">{moment(post.createdAt).format('MMM DD, YYYY')}</span>
                                 </time>
-                                <span className="text-white">· 5 min read</span>
+                                <span className="text-white">· {post.readTime} min read</span>
                             </div>
                         </div>
                     </div>

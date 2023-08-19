@@ -23,7 +23,7 @@ const PostCard: React.FC<any> = ({post}: {post: Post})=> {
                     </h2>
                     <div className="mt-3 flex items-center space-x-3 text-gray-500 dark:text-gray-400">
                         <time className="truncate text-sm" dateTime="2022-10-20T12:28:00.000Z">{moment(post.createdAt).format('MMM DD, YYYY')}</time>
-                        <span className="trucate text-sm">· 5 min read</span>
+                        <span className="trucate text-sm">· {post.readTime} min read</span>
                     </div>
                 </div>
             </div>

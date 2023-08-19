@@ -212,7 +212,7 @@ const AreaChart: React.FC<{props: AreaChartState}> = ({props} :{props: AreaChart
           type="area"
           series={state.series}
           width="105%"
-          height="400"
+          height="500"
           className="ml-10 mb-0 pb-0"
         />
         <ReactApexChart
