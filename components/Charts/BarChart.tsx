@@ -87,7 +87,7 @@ const BarChart: React.FC<{props: BarChartState[]}> = ({props} :{props: BarChartS
       <div className="mb-4 justify-between gap-4 sm:flex">
         <div>
           <h4 className="text-xl font-semibold text-black dark:text-white">
-            Buyers' Spending Segmentation
+            Buyers&apos; Spending Segmentation
           </h4>
         </div>
         <div>
