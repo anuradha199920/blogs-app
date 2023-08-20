@@ -7,13 +7,13 @@ import { ColDef } from 'ag-grid-community';
 const convertTablePropsToMonthColumnDefs: ColDef[] = [
     { field: 'collection', headerName: 'Collection Name', minWidth: 150},
     { field: 'trade', headerName: 'Trade' },
-    { field: 'monthSales', headerName: 'Month Sales' },
-    { field: 'monthnftTraded', headerName: 'Month NFTs Traded' },
-    { field: 'monthBuyers', headerName: 'Month Buyers'},
-    { field: 'monthSellers', headerName: 'Month Sellers'},
-    { field: 'monthVolume', headerName: 'Month Volume'},
-    { field: 'monthWashVolume', headerName: 'Month Wash Volume'},
-    { field: 'monthHighestSale', headerName: 'Month Highest Sale'},
+    { field: 'monthSales', headerName: '30d Sales' },
+    { field: 'monthnftTraded', headerName: '30d NFTs Traded' },
+    { field: 'monthBuyers', headerName: '30d Buyers'},
+    { field: 'monthSellers', headerName: '30d Sellers'},
+    { field: 'monthVolume', headerName: '30d Volume'},
+    { field: 'monthWashVolume', headerName: '30d Wash Volume'},
+    { field: 'monthHighestSale', headerName: '30d Highest Sale'},
     { field: 'supply', headerName: 'Supply' },
     { field: 'collectionAge', headerName: 'Collection Age', minWidth: 150 }
   ];
@@ -21,13 +21,13 @@ const convertTablePropsToMonthColumnDefs: ColDef[] = [
 const convertTablePropsToDayColumnDefs: ColDef[] = [
     { field: 'collection', headerName: 'Collection Name', minWidth: 150},
     { field: 'trade', headerName: 'Trade' },
-    { field: 'daySales', headerName: 'Day Sales' },
-    { field: 'daynftTraded', headerName: 'Day NFTs Traded' },
-    { field: 'dayBuyers', headerName: 'Day Buyers' },
-    { field: 'daySellers', headerName: 'Day Sellers' },
-    { field: 'dayVolume', headerName: 'Day Volume' },
-    { field: 'dayWashVolume', headerName: 'Day Wash Volume' },
-    { field: 'dayHighestSale', headerName: 'Day Highest Sale' },
+    { field: 'daySales', headerName: '1d Sales' },
+    { field: 'daynftTraded', headerName: '1d NFTs Traded' },
+    { field: 'dayBuyers', headerName: '1d Buyers' },
+    { field: 'daySellers', headerName: '1d Sellers' },
+    { field: 'dayVolume', headerName: '1d Volume' },
+    { field: 'dayWashVolume', headerName: '1d Wash Volume' },
+    { field: 'dayHighestSale', headerName: '1d Highest Sale' },
     { field: 'supply', headerName: 'Supply' },
     { field: 'collectionAge', headerName: 'Collection Age', minWidth: 150 }
   ];
@@ -35,14 +35,13 @@ const convertTablePropsToDayColumnDefs: ColDef[] = [
 const convertTablePropsToWeekColumnDefs: ColDef[] = [
     { field: 'collection', headerName: 'Collection Name', minWidth: 150},
     { field: 'trade', headerName: 'Trade' },
-    { field: 'daySales', headerName: 'Day Sales' },
-    { field: 'weekSales', headerName: 'Week Sales'},
-    { field: 'weeknftTraded', headerName: 'Week NFTs Traded' },
-    { field: 'weekBuyers', headerName: 'Week Buyers'},
-    { field: 'weekSellers', headerName: 'Week Sellers' },
-    { field: 'weekVolume', headerName: 'Week Volume' },
-    { field: 'weekWashVolume', headerName: 'Week Wash Volume' },
-    { field: 'weekHighestSale', headerName: 'Week Highest Sale'},
+    { field: 'weekSales', headerName: '7d Sales'},
+    { field: 'weeknftTraded', headerName: '7d NFTs Traded' },
+    { field: 'weekBuyers', headerName: '7d Buyers'},
+    { field: 'weekSellers', headerName: '7d Sellers' },
+    { field: 'weekVolume', headerName: '7d Volume' },
+    { field: 'weekWashVolume', headerName: '7d Wash Volume' },
+    { field: 'weekHighestSale', headerName: '7d Highest Sale'},
     { field: 'supply', headerName: 'Supply' },
     { field: 'collectionAge', headerName: 'Collection Age', minWidth: 150 }
   ];
@@ -81,13 +80,13 @@ const  DataGrid = ({props}:{props: TableProps[]}) => {
         <div className="flex w-full max-w-45 justify-end">
           <div className="inline-flex items-center rounded-md bg-whiter p-1.5 dark:bg-meta-4">
             <button className={`${value=="Day"? "dark:bg-boxdark shadow-card  bg-white": ""} rounded py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark`} onClick={handleButtonClick} value={"Day"}>
-              Day
+              1d
             </button>
             <button className={`${value=="Week"? "dark:bg-boxdark shadow-card  bg-white": ""} rounded py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark`} onClick={handleButtonClick} value={"Week"}>
-              Week
+              7d
             </button>
             <button className={`${value=="Month"? "dark:bg-boxdark shadow-card  bg-white": ""} rounded py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark`} onClick={handleButtonClick} value={"Month"}>
-              Month
+              30d
             </button>
           </div>
         </div>
