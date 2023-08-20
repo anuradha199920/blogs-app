@@ -1,8 +1,8 @@
 "use client"
 import { ApexOptions } from "apexcharts";
 import React, { useState } from "react";
-import dynamic from "next/dynamic";
 import { AreaChartState } from "@/components";
+import dynamic from "next/dynamic";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
@@ -205,14 +205,19 @@ const AreaChart: React.FC<{props: AreaChartState}> = ({props} :{props: AreaChart
   if (!isWindowAvailable()) return <></>;
 
   return (
-    <div className="col-span-12 rounded-sm border border-stroke bg-[#E4E3D8] shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-8">
-      <div id="areaChart" className="m-0 -ml-5 h-[500px] w-[100%] p-0 ">
+    <div className="col-span-12 rounded-sm border border-stroke bg-[#E4E3D8] shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-8 p-7.5">
+      <div className="mb-4 justify-between gap-4 sm:flex">
+          <h4 className="text-xl font-semibold text-black dark:text-white">
+            NFT Market Participants Overview
+          </h4>
+      </div>
+      <div id="areaChart" className="m-0 -ml-11 h-[500px] w-[100%] p-0 ">
         <ReactApexChart
           options={options()}
           type="area"
           series={state.series}
           width="105%"
-          height="500"
+          height="450"
           className="ml-10 mb-0 pb-0"
         />
         <ReactApexChart

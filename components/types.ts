@@ -137,12 +137,41 @@ export interface AreaChartState {
     }[];
   }
 
- export interface BarChartState {
+export interface BarChartState {
     series: {
         name: string;
         data: {
-          x: string;
-          y: number;
+            x: string;
+            y: number;
         }[];
-      }[];
+    }[];
+}
+
+export interface TableProps {
+    collection: string;
+    collectionAge: string;
+    dayBuyers: number;
+    dayHighestSale: number;
+    daySales: number;
+    daySellers: number;
+    dayVolume: number;
+    dayWashVolume: number;
+    daynftTraded: number;
+    diamond_hands: number;
+    monthBuyers: number;
+    monthHighestSale: number;
+    monthSales: number;
+    monthSellers: number;
+    monthVolume: number;
+    monthWashVolume: number;
+    monthnftTraded: number;
+    supply: number;
+    trade: string;
+    weekBuyers: number;
+    weekHighestSale: number;
+    weekSales: number;
+    weekSellers: number;
+    weekVolume: number;
+    weekWashVolume: number;
+    weeknftTraded: number;
   }

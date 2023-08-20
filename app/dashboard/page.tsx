@@ -1,8 +1,8 @@
 import React from "react";
-import {CardDataStats, MarketOverviewProps, AreaChart, BarChart, MarketOverview, BarChartState} from "@/components";
+import { MarketOverviewProps, AreaChart, BarChart, MarketOverview, BarChartState, DataGrid} from "@/components";
 import {fetchDuneData} from "@/utils";
 import { MarketStatisticsProps, AreaChartState } from "@/components";
-import {WEEKDAY, MARKET_OVERVIEW_QUERY, MARKET_OVERVIEW_STATISTICS} from "@/components/constants"
+import {WEEKDAY, MARKET_OVERVIEW_QUERY, MARKET_OVERVIEW_STATISTICS, TABLE_QUERY} from "@/components/constants"
 // without this the component renders on server and throws an error
 // import dynamic from "next/dynamic";
 // const MapOne = dynamic(() => import("../Maps/MapOne"), {
@@ -81,32 +81,38 @@ function getExpenditureChartFormat(dataList: any){
     });
     return [{
       series: [ {
-        name: 'Less than 1 Eth',
+        name: '< 1Ξ',
         data: eth0Series.slice(0,7)
       },{
-        name: 'Greater than 1 Eth & Less than 2 Eth',
+        name: '> 1Ξ & < 2Ξ',
         data: eth1Series.slice(0,7)
       }, {
-        name: 'Greater than 2 Eth',
+        name: '> 2Ξ',
         data: eth2Series.slice(0,7)
       }] 
     }, {
       series:  [ {
-        name: 'Less than 1 Eth',
+        name: '< 1Ξ',
         data: eth0Series.slice(7, 14)
       },{
-        name: 'Greater than 1 Eth & Less than 2 Eth',
+        name: '> 1Ξ & < 2Ξ',
         data: eth1Series.slice(7, 14)
       }, {
-        name: 'Greater than 2 Eth',
+        name: '> 2Ξ',
         data: eth2Series.slice(7, 14)
       }] 
     }];
 }
+
+function getTableProps(dataList: any){
+  return dataList.result.rows;
+}
+
 const Dashboard: React.FC = async () => {
  
   const marketOverviewResponse: MarketOverviewProps[] = deserializeMarketOverview((await fetchDuneData(MARKET_OVERVIEW_QUERY)));
   const marketStatisticsPropsResponse = await fetchDuneData(MARKET_OVERVIEW_STATISTICS);
+  const tableProps = getTableProps(await fetchDuneData(TABLE_QUERY));
   const areaChartProps: AreaChartState  = getChartFormatData(marketStatisticsPropsResponse);
   const barChartProps: BarChartState[] = getExpenditureChartFormat(marketStatisticsPropsResponse)
 
@@ -118,10 +124,13 @@ const Dashboard: React.FC = async () => {
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
         <AreaChart props={areaChartProps}/>
         <BarChart props={barChartProps}/>
+        <div className="col-span-12 ">
+          <DataGrid props={tableProps}/>
+        </div>
         {/* <ChartTwo />
         <ChartThree />
         <MapOne />
-        <div className="col-span-12 xl:col-span-8">
+       
           <TableOne />
         </div>
         <ChatCard /> */}

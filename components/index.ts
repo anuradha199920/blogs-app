@@ -4,7 +4,7 @@ export {default as PostWidget} from './PostWidget';
 export {default as NavBar} from './NavBar';
 export type { Post, Author, Category, PostsConnection, Comment, TextNode,
      LinkNode, ImageNode, ParagraphNode, HeadingNode, IFramesNode, CodeBlockNode,
-     AreaChartState, MarketStatisticsProps, BarChartState} from './types';
+     AreaChartState, MarketStatisticsProps, BarChartState, TableProps} from './types';
 export {MarketOverviewProps as MarketOverviewProps} from './types';
 export {default as PostDetail} from './PostDetail';
 export {default as AuthorDetails} from "./AuthorDetails";
@@ -22,3 +22,4 @@ export {default as CardDataStats} from './CardDataStats';
 export {default as AreaChart} from './Charts/AreaChart';
 export {default as BarChart} from './Charts/BarChart';
 export {default as MarketOverview} from './MarketOverview';
+export {default as DataGrid} from './Grid/DataGrid';
