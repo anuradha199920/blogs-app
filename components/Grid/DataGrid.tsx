@@ -2,11 +2,13 @@
 import React, { useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import {TableProps} from '@/components';
-import { ColDef } from 'ag-grid-community';
+import { ColDef, ValueFormatterParams } from 'ag-grid-community';
 
 const convertTablePropsToMonthColumnDefs: ColDef[] = [
     { field: 'collection', headerName: 'Collection Name', minWidth: 150},
-    { field: 'trade', headerName: 'Trade' },
+    { field: 'trade', headerName: 'Trade',cellRenderer: (params: ValueFormatterParams) => {
+        return <div dangerouslySetInnerHTML={{ __html: params.value }} />;
+  } },
     { field: 'monthSales', headerName: '30D Sales' },
     { field: 'monthnftTraded', headerName: '30D NFTs Traded' },
     { field: 'monthBuyers', headerName: '30D Buyers'},
@@ -20,7 +22,10 @@ const convertTablePropsToMonthColumnDefs: ColDef[] = [
 
 const convertTablePropsToDayColumnDefs: ColDef[] = [
     { field: 'collection', headerName: 'Collection Name', minWidth: 150},
-    { field: 'trade', headerName: 'Trade' },
+    { field: 'trade', headerName: 'Trade',
+        cellRenderer: (params: ValueFormatterParams) => {
+            return <div dangerouslySetInnerHTML={{ __html: params.value }} />;
+      } },
     { field: 'daySales', headerName: ' 1D Sales' },
     { field: 'daynftTraded', headerName: ' 1D NFTs Traded' },
     { field: 'dayBuyers', headerName: ' 1D Buyers' },
@@ -34,7 +39,9 @@ const convertTablePropsToDayColumnDefs: ColDef[] = [
 
 const convertTablePropsToWeekColumnDefs: ColDef[] = [
     { field: 'collection', headerName: 'Collection Name', minWidth: 150},
-    { field: 'trade', headerName: 'Trade' },
+    { field: 'trade', headerName: 'Trade', cellRenderer: (params: ValueFormatterParams) => {
+        return <div dangerouslySetInnerHTML={{ __html: params.value }} />;
+  } },
     { field: 'weekSales', headerName: '7D Sales'},
     { field: 'weeknftTraded', headerName: '7D NFTs Traded' },
     { field: 'weekBuyers', headerName: '7D Buyers'},
@@ -114,9 +121,6 @@ const  DataGrid = ({props}:{props: TableProps[]}) => {
                         rowData={rowData}
                         getRowId={data => data.data.collection}
                         sideBar={{
-                        }}
-                        containerStyle={{
-                            
                         }}
                     />
             </div>
