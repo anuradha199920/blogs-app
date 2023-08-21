@@ -121,6 +121,7 @@ const  DataGrid = ({props}:{props: TableProps[]}) => {
                             },
                         }}
                     defaultColDef={{
+                        minWidth: 150,
                         filter: true,
                         wrapHeaderText: true,
                         wrapText: true,
