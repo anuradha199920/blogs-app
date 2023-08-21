@@ -135,6 +135,18 @@
   background-color: #ffffff00;
 }
 
+.ag-row {
+  border: 1px solid #000;   /* Adjust border style as needed */
+  margin-bottom: 20px !important;
+}
+.ag-row:after {
+  content: "";
+  display: block;
+  height: 20px;  /* your desired space */
+  width: 100%;
+  background-color: #fff;  /* or whatever your grid background color is */
+}
+
 /* html,
 body {
   padding: 0;

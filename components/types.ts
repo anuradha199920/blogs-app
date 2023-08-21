@@ -157,7 +157,7 @@ export interface TableProps {
     dayVolume: number;
     dayWashVolume: number;
     daynftTraded: number;
-    diamond_hands: number;
+    diamondHands: number;
     monthBuyers: number;
     monthHighestSale: number;
     monthSales: number;

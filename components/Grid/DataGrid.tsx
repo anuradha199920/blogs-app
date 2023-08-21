@@ -16,6 +16,7 @@ const convertTablePropsToMonthColumnDefs: ColDef[] = [
     { field: 'monthVolume', headerName: '30D Volume'},
     { field: 'monthWashVolume', headerName: '30D Wash Volume'},
     { field: 'monthHighestSale', headerName: '30D Highest Sale'},
+    { field: 'diamondHands', headerName: 'Diamond Hands'},
     { field: 'supply', headerName: 'Supply' },
     { field: 'collectionAge', headerName: 'Collection Age', minWidth: 150 }
   ];
@@ -26,13 +27,14 @@ const convertTablePropsToDayColumnDefs: ColDef[] = [
         cellRenderer: (params: ValueFormatterParams) => {
             return <div dangerouslySetInnerHTML={{ __html: params.value }} />;
       } },
-    { field: 'daySales', headerName: ' 1D Sales', width: 100,wrapHeaderText: true , autoHeaderHeight: true },
+    { field: 'daySales', headerName: ' 1D Sales', width: 100,wrapHeaderText: true , autoHeaderHeight: true},
     { field: 'daynftTraded', headerName: ' 1D NFTs Traded', width: 100, wrapHeaderText: true, autoHeaderHeight: true },
     { field: 'dayBuyers', headerName: ' 1D Buyers', width: 100, wrapHeaderText: true },
     { field: 'daySellers', headerName: ' 1D Sellers', width: 100, wrapHeaderText: true},
-    { field: 'dayVolume', headerName: ' 1D Volume' },
+    { field: 'dayVolume', headerName: ' 1D Volume', valueFormatter:(params: ValueFormatterParams)=>(params.value/1000).toFixed(2)},
     { field: 'dayWashVolume', headerName: ' 1D Wash Volume' },
     { field: 'dayHighestSale', headerName: ' 1D Highest Sale' },
+    { field: 'diamondHands', headerName: 'Diamond Hands'},
     { field: 'supply', headerName: 'Supply' },
     { field: 'collectionAge', headerName: 'Collection Age', minWidth: 150 }
   ];
@@ -49,6 +51,7 @@ const convertTablePropsToWeekColumnDefs: ColDef[] = [
     { field: 'weekVolume', headerName: '7D Volume' },
     { field: 'weekWashVolume', headerName: '7D Wash Volume' },
     { field: 'weekHighestSale', headerName: '7D Highest Sale'},
+    { field: 'diamondHands', headerName: 'Diamond Hands'},
     { field: 'supply', headerName: 'Supply' },
     { field: 'collectionAge', headerName: 'Collection Age', minWidth: 150 }
   ];
@@ -109,11 +112,18 @@ const  DataGrid = ({props}:{props: TableProps[]}) => {
                 }}
             >
                 <AgGridReact
+                    gridOptions={
+                       { getRowStyle: (params) => {
+                            return {
+                                outerWidth: '100%'
+                            };
+                    },
+                }}
                     defaultColDef={{
                         filter: true,
                         minWidth: 100,
-                        width: 150,
                         wrapHeaderText: true,
+                        wrapText: true,
                         filterParams: {
                             newRowsAction: 'keep'
                         },
@@ -123,13 +133,8 @@ const  DataGrid = ({props}:{props: TableProps[]}) => {
                     onGridReady={onGridReady}
                     rowData={rowData}
                     getRowId={data => data.data.collection}
-                    rowHeight={100}
-                    rowStyle= {{
-                        'border-bottom': 'black 2px solid',
-                        'border-top': 'black 2px solid',
-                        'margin': '20px'
-                    }}
                     className=""
+                    onFirstDataRendered={(params: any)=>{params.api.sizeColumnsToFit()}}
                 />
             </div>
         </div>
