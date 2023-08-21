@@ -135,7 +135,7 @@ const  DataGrid = ({props}:{props: TableProps[]}) => {
                     onGridReady={onGridReady}
                     rowData={rowData}
                     getRowId={data => data.data.collection}        
-                    onColumnValueChanged={(params=>params.api.roed)}        />
+                    onColumnValueChanged={(params=>params.api.sizeColumnsToFit())}        />
             </div>
         </div>
     </div>
