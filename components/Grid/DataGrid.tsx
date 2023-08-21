@@ -9,10 +9,10 @@ const convertTablePropsToMonthColumnDefs: ColDef[] = [
     { field: 'trade', headerName: 'Trade',cellRenderer: (params: ValueFormatterParams) => {
         return <div dangerouslySetInnerHTML={{ __html: params.value }} />;
   } },
-    { field: 'monthSales', headerName: '30D Sales',  wrapHeaderText: true, autoHeaderHeight: true },
-    { field: 'monthnftTraded', headerName: '30D NFTs Traded',  wrapHeaderText: true },
-    { field: 'monthBuyers', headerName: '30D Buyers',  wrapHeaderText: true},
-    { field: 'monthSellers', headerName: '30D Sellers',  wrapHeaderText: true},
+    { field: 'monthSales', headerName: '30D Sales',  wrapHeaderText: true, autoHeaderHeight: true, width: 100 },
+    { field: 'monthnftTraded', headerName: '30D NFTs Traded',  wrapHeaderText: true, width: 100 },
+    { field: 'monthBuyers', headerName: '30D Buyers',  wrapHeaderText: true, width: 100},
+    { field: 'monthSellers', headerName: '30D Sellers',  wrapHeaderText: true, width: 100},
     { field: 'monthVolume', headerName: '30D Volume',valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000000).toFixed(2)}M`) },
     { field: 'monthWashVolume', headerName: '30D Wash Volume', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`)},
     { field: 'monthHighestSale', headerName: '30D Highest Sale', valueFormatter:(params: ValueFormatterParams)=>(params.value?? 0).toFixed(2)},
@@ -29,8 +29,8 @@ const convertTablePropsToDayColumnDefs: ColDef[] = [
       } },
     { field: 'daySales', headerName: ' 1D Sales', wrapHeaderText: true , autoHeaderHeight: true},
     { field: 'daynftTraded', headerName: ' 1D NFTs Traded',  wrapHeaderText: true, autoHeaderHeight: true },
-    { field: 'dayBuyers', headerName: ' 1D Buyers',  wrapHeaderText: true },
-    { field: 'daySellers', headerName: ' 1D Sellers',  wrapHeaderText: true},
+    { field: 'dayBuyers', headerName: ' 1D Buyers',  wrapHeaderText: true , width: 100},
+    { field: 'daySellers', headerName: ' 1D Sellers',  wrapHeaderText: true, width: 100},
     { field: 'dayVolume', headerName: ' 1D Volume', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`)},
     { field: 'dayWashVolume', headerName: ' 1D Wash Volume' ,valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`)},
     { field: 'dayHighestSale', headerName: ' 1D Highest Sale',valueFormatter:(params: ValueFormatterParams)=>(params.value?? 0).toFixed(2) },
@@ -44,10 +44,10 @@ const convertTablePropsToWeekColumnDefs: ColDef[] = [
     { field: 'trade', headerName: 'Trade', cellRenderer: (params: ValueFormatterParams) => {
         return <div dangerouslySetInnerHTML={{ __html: params.value }} />;
   } },
-    { field: 'weekSales', headerName: '7D Sales',  wrapHeaderText: true},
-    { field: 'weeknftTraded', headerName: '7D NFTs Traded',  wrapHeaderText: true },
-    { field: 'weekBuyers', headerName: '7D Buyers',  wrapHeaderText: true},
-    { field: 'weekSellers', headerName: '7D Sellers',  wrapHeaderText: true},
+    { field: 'weekSales', headerName: '7D Sales',  wrapHeaderText: true, width: 100},
+    { field: 'weeknftTraded', headerName: '7D NFTs Traded',  wrapHeaderText: true, width: 100 },
+    { field: 'weekBuyers', headerName: '7D Buyers',  wrapHeaderText: true, width: 100},
+    { field: 'weekSellers', headerName: '7D Sellers',  wrapHeaderText: true,  width: 100},
     { field: 'weekVolume', headerName: '7D Volume', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`) },
     { field: 'weekWashVolume', headerName: '7D Wash Volume', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`) },
     { field: 'weekHighestSale', headerName: '7D Highest Sale', valueFormatter:(params: ValueFormatterParams)=>(params.value??0).toFixed(2)},
@@ -121,7 +121,7 @@ const  DataGrid = ({props}:{props: TableProps[]}) => {
                             },
                         }}
                     defaultColDef={{
-                        minWidth: 150,
+                        minWidth: 100,
                         filter: true,
                         wrapHeaderText: true,
                         wrapText: true,
@@ -134,9 +134,8 @@ const  DataGrid = ({props}:{props: TableProps[]}) => {
                     columnDefs={columnDefs}
                     onGridReady={onGridReady}
                     rowData={rowData}
-                    getRowId={data => data.data.collection}
-                    onNewColumnsLoaded={(params)=>params.api.sizeColumnsToFit()}
-                />
+                    getRowId={data => data.data.collection}        
+                    onColumnValueChanged={(params=>params.api.roed)}        />
             </div>
         </div>
     </div>
