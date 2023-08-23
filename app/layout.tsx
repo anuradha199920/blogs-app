@@ -15,10 +15,10 @@ const ethersConfig = {
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: 'Crypto Blogs App',
-  description: 'Blogs for web3 enthusiasts ',
-}
+// export const metadata: Metadata = {
+//     title: 'Crypto Blogs App',
+//     description: 'Blogs for web3 enthusiasts ',
+//   }
 
 export default function RootLayout({children,}: { children: React.ReactNode }) {
     return (
