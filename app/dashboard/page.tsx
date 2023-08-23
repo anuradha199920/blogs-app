@@ -107,7 +107,7 @@ function getVolumeFormatData(dataList: any){
           month: "short",
           day: "2-digit",
         }).format(new Date(data.time.split(" ")[0])),
-        y: data.volume.toFixed(2)
+        y: parseInt(data.volume.toFixed(2))
       });
     });
     return {series: [volumeSeries]};
