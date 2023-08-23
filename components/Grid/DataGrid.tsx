@@ -10,7 +10,7 @@ const convertTablePropsToMonthColumnDefs: ColDef[] = [
     { field: 'nftParams', headerName: ' ', cellRenderer: (params: ValueFormatterParams) => {
         const nftParam = params.value.split("_");
         console.log(nftParam);
-        return <NFT contractAddress={nftParam[0]} tokenId={nftParam[1]}/>;
+        return"image";
     } },
     { field: 'collection', headerName: 'Collection Name', minWidth: 200},
     { field: 'trade', headerName: 'Trade',cellRenderer: (params: ValueFormatterParams) => {
@@ -32,7 +32,7 @@ const convertTablePropsToDayColumnDefs: ColDef[] = [
     { field: 'nftParams', headerName: ' ', cellRenderer: (params: ValueFormatterParams) => {
         const nftParam = params.value.split("_");
         console.log(nftParam);
-        return <NFT contractAddress={nftParam[0]} tokenId={nftParam[1]}/>;
+        return"image";
     } },
     { field: 'collection', headerName: 'Collection Name', minWidth: 200},
     { field: 'trade', headerName: 'Trade',
@@ -56,7 +56,7 @@ const convertTablePropsToWeekColumnDefs: ColDef[] = [
     { field: 'nftParams', headerName: ' ', cellRenderer: (params: ValueFormatterParams) => {
         const nftParam = params.value.split("_");
         console.log(nftParam);
-        return <NFT contractAddress={nftParam[0]} tokenId={nftParam[1]}/>;
+        return"image";
     } },
     { field: 'collection', headerName: 'Collection Name', minWidth: 200, wrapText: true},
     { field: 'trade', headerName: 'Trade', cellRenderer: (params: ValueFormatterParams) => {
