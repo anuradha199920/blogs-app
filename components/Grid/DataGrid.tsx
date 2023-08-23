@@ -1,58 +1,76 @@
 "use client"
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { AgGridReact } from 'ag-grid-react';
 import {TableProps} from '@/components';
 import { ColDef, ValueFormatterParams } from 'ag-grid-community';
+import NFT from '../NFT';
 
 const convertTablePropsToMonthColumnDefs: ColDef[] = [
+    { field: 'nftParams', headerName: ' ', cellRenderer: (params: ValueFormatterParams) => {
+        const nftParam = params.value.split("_");
+        console.log(nftParam);
+        return <NFT contractAddress={nftParam[0]} tokenId={nftParam[1]}/>;
+    } },
     { field: 'collection', headerName: 'Collection Name', minWidth: 200},
     { field: 'trade', headerName: 'Trade',cellRenderer: (params: ValueFormatterParams) => {
         return <div dangerouslySetInnerHTML={{ __html: params.value }} />;
   } },
-    { field: 'monthSales', headerName: '30D Sales',  wrapHeaderText: true, autoHeaderHeight: true, width: 100 },
-    { field: 'monthnftTraded', headerName: '30D NFTs Traded',  wrapHeaderText: true, width: 100 },
-    { field: 'monthBuyers', headerName: '30D Buyers',  wrapHeaderText: true, width: 100},
-    { field: 'monthSellers', headerName: '30D Sellers',  wrapHeaderText: true, width: 100},
-    { field: 'monthVolume', headerName: '30D Volume',valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000000).toFixed(2)}M`) },
-    { field: 'monthWashVolume', headerName: '30D Wash Volume', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`)},
-    { field: 'monthHighestSale', headerName: '30D Highest Sale', valueFormatter:(params: ValueFormatterParams)=>(params.value?? 0).toFixed(2)},
-    { field: 'diamondHands', headerName: 'Diamond Hands',valueFormatter:(params: ValueFormatterParams)=>(`${(params.value?? 0).toFixed(2)}%`)},
-    { field: 'supply', headerName: 'Supply' },
+    { field: 'monthSales', headerName: '30D Sales',  wrapHeaderText: true, autoHeaderHeight: true, width: 100, sortable: true},
+    { field: 'monthnftTraded', headerName: '30D NFTs Traded',  wrapHeaderText: true, width: 100, sortable: true },
+    { field: 'monthBuyers', headerName: '30D Buyers',  wrapHeaderText: true, width: 100, sortable: true },
+    { field: 'monthSellers', headerName: '30D Sellers',  wrapHeaderText: true, width: 100, sortable: true },
+    { field: 'monthVolume', headerName: '30D Volume',valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000000).toFixed(2)}M`), sortable: true },
+    { field: 'monthWashVolume', headerName: '30D Wash Volume', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`), sortable: true},
+    { field: 'monthHighestSale', headerName: '30D Highest Sale', valueFormatter:(params: ValueFormatterParams)=>(params.value?? 0).toFixed(2), sortable: true},
+    { field: 'diamondHands', headerName: 'Diamond Hands',valueFormatter:(params: ValueFormatterParams)=>(`${(params.value?? 0).toFixed(2)}%`), sortable: true},
+    { field: 'supply', headerName: 'Supply', sortable: true },
     { field: 'collectionAge', headerName: 'Collection Age', minWidth: 150 }
   ];
 
 const convertTablePropsToDayColumnDefs: ColDef[] = [
+    { field: 'nftParams', headerName: ' ', cellRenderer: (params: ValueFormatterParams) => {
+        const nftParam = params.value.split("_");
+        console.log(nftParam);
+        return <NFT contractAddress={nftParam[0]} tokenId={nftParam[1]}/>;
+    } },
     { field: 'collection', headerName: 'Collection Name', minWidth: 200},
     { field: 'trade', headerName: 'Trade',
         cellRenderer: (params: ValueFormatterParams) => {
             return <div dangerouslySetInnerHTML={{ __html: params.value }} />;
       } },
-    { field: 'daySales', headerName: ' 1D Sales', wrapHeaderText: true , autoHeaderHeight: true},
-    { field: 'daynftTraded', headerName: ' 1D NFTs Traded',  wrapHeaderText: true, autoHeaderHeight: true },
-    { field: 'dayBuyers', headerName: ' 1D Buyers',  wrapHeaderText: true , width: 100},
-    { field: 'daySellers', headerName: ' 1D Sellers',  wrapHeaderText: true, width: 100},
-    { field: 'dayVolume', headerName: ' 1D Volume', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`)},
-    { field: 'dayWashVolume', headerName: ' 1D Wash Volume' ,valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`)},
-    { field: 'dayHighestSale', headerName: ' 1D Highest Sale',valueFormatter:(params: ValueFormatterParams)=>(params.value?? 0).toFixed(2) },
-    { field: 'diamondHands', headerName: 'Diamond Hands', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value?? 0).toFixed(2)}%`)},
-    { field: 'supply', headerName: 'Supply' },
+    
+    { field: 'daySales', headerName: ' 1D Sales', wrapHeaderText: true , autoHeaderHeight: true, sortable: true},
+    { field: 'daynftTraded', headerName: ' 1D NFTs Traded',  wrapHeaderText: true, autoHeaderHeight: true, sortable: true },
+    { field: 'dayBuyers', headerName: ' 1D Buyers',  wrapHeaderText: true , width: 100, sortable: true},
+    { field: 'daySellers', headerName: ' 1D Sellers',  wrapHeaderText: true, width: 100, sortable: true},
+    { field: 'dayVolume', headerName: ' 1D Volume', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`), sortable: true},
+    { field: 'dayWashVolume', headerName: ' 1D Wash Volume' ,valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`), sortable: true},
+    { field: 'dayHighestSale', headerName: ' 1D Highest Sale',valueFormatter:(params: ValueFormatterParams)=>(params.value?? 0).toFixed(2) , sortable: true},
+    { field: 'diamondHands', headerName: 'Diamond Hands', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value?? 0).toFixed(2)}%`), sortable: true},
+    { field: 'supply', headerName: 'Supply' , sortable: true},
     { field: 'collectionAge', headerName: 'Collection Age', minWidth: 150 }
   ];
 
 const convertTablePropsToWeekColumnDefs: ColDef[] = [
+    { field: 'nftParams', headerName: ' ', cellRenderer: (params: ValueFormatterParams) => {
+        const nftParam = params.value.split("_");
+        console.log(nftParam);
+        return <NFT contractAddress={nftParam[0]} tokenId={nftParam[1]}/>;
+    } },
     { field: 'collection', headerName: 'Collection Name', minWidth: 200, wrapText: true},
     { field: 'trade', headerName: 'Trade', cellRenderer: (params: ValueFormatterParams) => {
         return <div dangerouslySetInnerHTML={{ __html: params.value }} />;
-  } },
-    { field: 'weekSales', headerName: '7D Sales',  wrapHeaderText: true, width: 100},
-    { field: 'weeknftTraded', headerName: '7D NFTs Traded',  wrapHeaderText: true, width: 100 },
-    { field: 'weekBuyers', headerName: '7D Buyers',  wrapHeaderText: true, width: 100},
-    { field: 'weekSellers', headerName: '7D Sellers',  wrapHeaderText: true,  width: 100},
-    { field: 'weekVolume', headerName: '7D Volume', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`) },
-    { field: 'weekWashVolume', headerName: '7D Wash Volume', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`) },
-    { field: 'weekHighestSale', headerName: '7D Highest Sale', valueFormatter:(params: ValueFormatterParams)=>(params.value??0).toFixed(2)},
-    { field: 'diamondHands', headerName: 'Diamond Hands', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value?? 0).toFixed(2)}%`)},
-    { field: 'supply', headerName: 'Supply' },
+    } },
+    { field: 'weekSales', headerName: '7D Sales',  wrapHeaderText: true, width: 100, sortable: true},
+    { field: 'weeknftTraded', headerName: '7D NFTs Traded',  wrapHeaderText: true, width: 100, sortable: true },
+    { field: 'weekBuyers', headerName: '7D Buyers',  wrapHeaderText: true, width: 100, sortable: true},
+    { field: 'weekSellers', headerName: '7D Sellers',  wrapHeaderText: true,  width: 100, sortable: true},
+    { field: 'weekVolume', headerName: '7D Volume', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`), sortable: true },
+    { field: 'weekWashVolume', headerName: '7D Wash Volume', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value/1000).toFixed(2)}K`) , sortable: true},
+    { field: 'weekHighestSale', headerName: '7D Highest Sale', valueFormatter:(params: ValueFormatterParams)=>(params.value??0).toFixed(2), sortable: true},
+    { field: 'diamondHands', headerName: 'Diamond Hands', valueFormatter:(params: ValueFormatterParams)=>(`${(params.value?? 0).toFixed(2)}%`), sortable: true},
+    { field: 'supply', headerName: 'Supply', sortable: true},
     { field: 'collectionAge', headerName: 'Collection Age', minWidth: 150 }
   ];
 
@@ -61,13 +79,23 @@ const  DataGrid = ({props}:{props: TableProps[]}) => {
     const [gridColumnApi, setGridColumnApi] = useState(null);
     const [rowData, setRowData] = useState(props);
     const [columnDefs, setColumnDefs] = useState(convertTablePropsToDayColumnDefs);
-    const[value, setValue] = useState("Day");
+    const [value, setValue] = useState("Day");
+    const router = useRouter();
     const onGridReady = (params: any) => {
         params.api.sizeColumnsToFit();
         setGridApi(params.api);
         setGridColumnApi(params.columnApi);
     };
 
+    const onRowClicked = (event: any) => {
+        const rowData = event.data;
+        const rowDataString = JSON.stringify(rowData);
+    
+        // Encode the string to ensure it's safe for URL passage
+        const encodedRowData = encodeURIComponent(rowDataString);
+    
+        router.push(`/collection/${rowData.collection}?data=${encodedRowData}`);
+    }
     const handleButtonClick = (e: any)=>{
         setValue(e.target.value);
         if(e.target.value === "Day"){
@@ -105,21 +133,13 @@ const  DataGrid = ({props}:{props: TableProps[]}) => {
             <div className="w-full h-[90%]">
                 <div
                 id="myGrid"
-                className="ag-theme-alpine"
+                className="ag-theme-alpine shadow-md"
                 style={{
                     height: '100%',
                     width: '100%',
-                    backgroundColor:"#E4E3D8"
                 }}
             >
                 <AgGridReact
-                    gridOptions={
-                       { getRowStyle: (params) => {
-                            return {
-                                outerWidth: '100%'
-                            };
-                            },
-                        }}
                     defaultColDef={{
                         minWidth: 100,
                         filter: true,
@@ -129,8 +149,10 @@ const  DataGrid = ({props}:{props: TableProps[]}) => {
                             newRowsAction: 'keep'
                         },
                         autoHeaderHeight: true,
-                        menuTabs: ['filterMenuTab', 'generalMenuTab', 'columnsMenuTab']
+                        menuTabs: ['filterMenuTab', 'generalMenuTab', 'columnsMenuTab'],
                     }}
+                    rowHeight={70}
+                    onRowClicked={onRowClicked}
                     columnDefs={columnDefs}
                     onGridReady={onGridReady}
                     rowData={rowData}

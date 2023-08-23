@@ -8,7 +8,7 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 });
 
 
-const options = () : ApexOptions => {
+const options = (chartId: string) : ApexOptions => {
     return {
         legend: {
             show: true,
@@ -17,7 +17,7 @@ const options = () : ApexOptions => {
         },
         colors: [ "#001E85", "#4671DF"],
         chart: {
-            id: 'chart1',
+            id: chartId,
             // events: {
             //   beforeMount: (chart) => {
             //     chart.windowResizeHandler();
@@ -49,7 +49,8 @@ const options = () : ApexOptions => {
             breakpoint: 1024,
               options: {
                   chart: {
-                    height: 400                  },
+                    height: 400 
+                  },
                   xaxis:{
                     tickAmount: 4,
                   }
@@ -101,7 +102,6 @@ const options = () : ApexOptions => {
         }, 
         xaxis: {
             type: "category",
-            tickAmount: 10,
             axisBorder: {
               show: true,
             },
@@ -114,9 +114,10 @@ const options = () : ApexOptions => {
               rotateAlways: false,
               hideOverlappingLabels: true,
               style: {
-                fontSize: "0.70rem",
-              }
-            }
+                fontSize: "0.60rem",
+              },
+              formatter: (value: string) =>{return ` ${value} `;}
+            },
         },
         yaxis: {
             title: {
@@ -133,13 +134,13 @@ const options = () : ApexOptions => {
     }
 };
 
-const brushOptions = (): ApexOptions =>{
+const brushOptions = (referenceChartId: string): ApexOptions =>{
   return {
       colors: [ "#001E85", "#4671DF"],
       chart: {
-        id: "brush1",
+        id: "brush"+referenceChartId,
         brush: {
-          target: "chart1",
+          target: referenceChartId,
           enabled: true,
           autoScaleYaxis: false
         },
@@ -188,7 +189,7 @@ const brushOptions = (): ApexOptions =>{
 }
 
 
-const AreaChart: React.FC<{props: AreaChartState}> = ({props} :{props: AreaChartState}) => {
+const AreaChart: React.FC<{props: AreaChartState, chartId: string, title: string}> = ({props, chartId, title} :{props: AreaChartState, chartId: string, title: string}) => {
   const [state, setState] = useState<AreaChartState>(props);
 
   const handleReset = () => {
@@ -205,15 +206,15 @@ const AreaChart: React.FC<{props: AreaChartState}> = ({props} :{props: AreaChart
   if (!isWindowAvailable()) return <></>;
 
   return (
-    <div className="col-span-12 rounded-sm border border-stroke bg-[#E4E3D8] shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-8 p-7.5">
+    <>
       <div className="mb-4 justify-between gap-4 sm:flex">
-          <h4 className="text-xl font-semibold text-black dark:text-white">
-            NFT Market Participants Overview
-          </h4>
+        <h4 className="text-xl font-semibold text-black dark:text-white">
+          {title}
+        </h4>
       </div>
       <div id="areaChart" className="m-0 -ml-11 h-[500px] w-[100%] p-0 ">
         <ReactApexChart
-          options={options()}
+          options={options(chartId)}
           type="area"
           series={state.series}
           width="105%"
@@ -221,7 +222,7 @@ const AreaChart: React.FC<{props: AreaChartState}> = ({props} :{props: AreaChart
           className="ml-10 mb-0 pb-0"
         />
         <ReactApexChart
-          options={brushOptions()}
+          options={brushOptions(chartId)}
           type="area"
           series={state.series}
           width="100%"
@@ -229,22 +230,7 @@ const AreaChart: React.FC<{props: AreaChartState}> = ({props} :{props: AreaChart
           className="ml-20 -my-11 py-0"
         />
       </div>
-      {/* <div className="flex flex-wrap items-start justify-between gap-3 sm:flex-nowrap">
-        <div className="flex w-full max-w-45 justify-end">
-          <div className="inline-flex items-center rounded-md bg-whiter p-1.5 dark:bg-meta-4">
-            <button className="rounded bg-white py-1 px-3 text-xs font-medium text-black shadow-card hover:bg-white hover:shadow-card dark:bg-boxdark dark:text-white dark:hover:bg-boxdark">
-              Day
-            </button>
-            <button className="rounded py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark">
-              Week
-            </button>
-            <button className="rounded py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:text-white dark:hover:bg-boxdark">
-              Month
-            </button>
-          </div>
-        </div>
-      </div> */}
-    </div>
+    </>
   );
 };
 

@@ -174,4 +174,5 @@ export interface TableProps {
     weekVolume: number;
     weekWashVolume: number;
     weeknftTraded: number;
+    nftParams: string;
   }

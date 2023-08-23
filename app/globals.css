@@ -132,19 +132,18 @@
 }
 
 .apexcharts-tooltip {
-  background-color: #ffffff00;
+  background-color: #86cdf7;
 }
 
-.ag-row {
-  border: 1px solid #000;   /* Adjust border style as needed */
-  margin-bottom: 20px !important;
+
+.ag-theme-alpine .ag-header-cell {
+  background-color: #E4E3D8 !important;
 }
-.ag-row:after {
-  content: "";
-  display: block;
-  height: 20px;  /* your desired space */
-  width: 100%;
-  background-color: #fff;  /* or whatever your grid background color is */
+
+.ag-theme-alpine{
+  box-shadow: #e2f786 !important;
+  border-radius: 5px !important;
+  border: 0;
 }
 
 /* html,
