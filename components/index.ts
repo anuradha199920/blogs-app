@@ -4,8 +4,8 @@ export {default as PostWidget} from './PostWidget';
 export {default as NavBar} from './NavBar';
 export type { Post, Author, Category, PostsConnection, Comment, TextNode,
      LinkNode, ImageNode, ParagraphNode, HeadingNode, IFramesNode, CodeBlockNode,
-     AreaChartState, MarketStatisticsProps, BarChartState, TableProps} from './types';
-export {MarketOverviewProps as MarketOverviewProps} from './types';
+     AreaChartState, MarketStatisticsProps, BarChartState, NFTStats, NFTSales, NFTFloorPrice,
+     NFTHolders, NFTTraders, MarketOverviewProps} from './types';
 export {default as PostDetail} from './PostDetail';
 export {default as AuthorDetails} from "./AuthorDetails";
 export {default as CommentForm} from './CommentForm';

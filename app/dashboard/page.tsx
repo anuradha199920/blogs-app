@@ -1,8 +1,7 @@
 import React from "react";
-import { MarketOverviewProps, AreaChart, BarChart, MarketOverview, BarChartState, DataGrid} from "@/components";
+import {AreaChart, BarChart, MarketOverview, BarChartState, DataGrid} from "@/components";
 import {fetchDuneData} from "@/utils";
-import {TableProps} from "@/components";
-import { MarketStatisticsProps, AreaChartState } from "@/components";
+import { MarketStatisticsProps, AreaChartState, MarketOverviewProps } from "@/components";
 import {WEEKDAY, MARKET_OVERVIEW_QUERY, MARKET_OVERVIEW_STATISTICS, TABLE_QUERY} from "@/components/constants"
 // without this the component renders on server and throws an error
 // import dynamic from "next/dynamic";
@@ -11,18 +10,7 @@ import {WEEKDAY, MARKET_OVERVIEW_QUERY, MARKET_OVERVIEW_STATISTICS, TABLE_QUERY}
 // });
 
 function deserializeMarketOverview(dataList: any){
-  return dataList.result.rows
-    .map(
-      (data: any)=>new MarketOverviewProps(        
-        data.Highest_Sale,
-        data.buyers,
-        data.sellers, 
-        data.organic_volume, 
-        data.sales, 
-        data.time,
-        data.wash_volume,
-        data.wash_volume_percentage))
-    .sort((a: any, b: any) =>(""+b.time).localeCompare(""+a.time));
+  return dataList.result.rows.sort((a: any, b: any) =>(""+b.time).localeCompare(""+a.time));
 }
 
 interface ChartSeries{

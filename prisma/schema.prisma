@@ -1,0 +1,132 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRO_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_PRO_URL_NON_POOLING") // uses a direct connection
+}
+
+
+model User {
+  id            String    @default(cuid()) @id
+  name          String?
+  email         String?   @unique
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  @@map(name: "users")
+}
+
+model NFTStats {
+  nftContractAddress   String   @unique @id @map(name: "nft_contract_address")
+  collection           String   @map(name: "collection")
+  collectionAge        String?   @map(name: "collection_age")
+  dayBuyers            Int      @map(name: "day_buyers")
+  dayHighestSale       Float    @map(name: "day_highest_sale")
+  daySales             Int      @map(name: "day_sales")
+  daySellers           Int      @map(name: "day_sellers")
+  dayVolume            Float?    @map(name: "day_volume")
+  dayWashVolume        Float?    @map(name: "day_wash_volume")
+  daynftTraded         Int?      @map(name: "day_nft_traded")
+  diamondHands         Float?    @map(name: "diamond_hands")
+  monthBuyers          Int      @map(name: "month_buyers")
+  monthHighestSale     Float    @map(name: "month_highest_sale")
+  monthSales           Int      @map(name: "month_sales")
+  monthSellers         Int      @map(name: "month_sellers")
+  monthVolume          Float    @map(name: "month_volume")
+  monthWashVolume      Float?    @map(name: "month_wash_volume")
+  monthnftTraded       Int?      @map(name: "month_nft_traded")
+  supply               Int?      @map(name: "supply")
+  tokenId              String   @map(name: "token_id")
+  trade                String   @map(name: "trade")
+  weekBuyers           Int      @map(name: "week_buyers")
+  weekHighestSale      Float    @map(name: "week_highest_sale")
+  weekSales            Int      @map(name: "week_sales")
+  weekSellers          Int      @map(name: "week_sellers")
+  weekVolume           Float    @map(name: "week_volume")
+  weekWashVolume       Float?    @map(name: "week_wash_volume")
+  weeknftTraded        Int?      @map(name: "week_nft_traded")
+  imageUrl             String? @map(name: "image_url")
+  nftTopSales          NFTSales[]
+  nftFloorPrice        NFTFloorPrice[]
+  nftTopTraders        NFTTraders[]
+  nftHolders           NFTHolders[]
+  @@map(name: "top_nfts_stats")
+}
+
+
+
+model NFTSales {
+    amountOriginal      Float
+    nftStats             NFTStats?   @relation(fields: [nftContractAddress], references: [nftContractAddress], onDelete: Cascade)
+    nftContractAddress   String     @map("nft_contract_address")
+    tokenId              String     @map("token_id")
+    imageUrl             String?    @map("image_url")
+    name  String?
+    @@id([nftContractAddress, tokenId, amountOriginal])
+    @@unique([nftContractAddress, tokenId, amountOriginal])
+    @@map(name: "top_nft_sales")
+}
+
+model NFTFloorPrice {
+    nftStats             NFTStats?   @relation(fields: [nftContractAddress], references: [nftContractAddress], onDelete: Cascade)
+    nftContractAddress   String     @map("nft_contract_address")
+    day                  String
+    floor                Float
+    name  String?
+    @@id([nftContractAddress, day])
+    @@unique([nftContractAddress, day])
+    @@map(name: "nfts_floor_prices")
+}
+
+model NFTTraders {
+    traderAddress     String      @map("trader_address")
+    nftStats             NFTStats?   @relation(fields: [nftContractAddress], references: [nftContractAddress], onDelete: Cascade)
+    nftContractAddress   String     @map("nft_contract_address")
+    weekTrades           Int
+    weekVolume           Float       @map(name: "week_volume")
+    name  String?
+    a_ranking Int
+    @@id([nftContractAddress, traderAddress])
+    @@map(name: "nfts_top_trades")
+}
+
+model NFTHolders {
+    nftStats             NFTStats?   @relation(fields: [nftContractAddress], references: [nftContractAddress], onDelete: Cascade)
+    nftContractAddress   String     @map("nft_contract_address")
+    holder               String
+    lastAquisitionTime   String   @map("last_aquisition_time")
+    lastShedTime         String     @map("last_shed_time")
+    heldCount         BigInt        @map("nft_held_count")
+    amountMinted Int @map("amount_minted")
+    name  String?
+    @@id([nftContractAddress, holder])
+    @@map(name: "top_nft_holders")
+}
+
+model MarketOverview {
+  time                  String  @id
+  highestSale           Float   @map("highest_sale")
+  buyers                Int
+  organicVolume         Float   @map("organic_volume")
+  sales                 Int     
+  sellers               Int
+  washVolume            Float   @map("wash_volume")
+  washVolumePercentage  Float   @map("wash_volume_percentage")
+  @@map(name: "market_overview")
+}
+
+model MarketAnalysis {
+  time    String @id
+  buyers  Int
+  eth0    Int
+  eth1    Int
+  eth2    Int
+  sales   Int
+  sellers Int
+  volume  Float
+  @@map("marker_analysis")
+}

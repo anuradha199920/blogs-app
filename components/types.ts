@@ -95,25 +95,15 @@ export interface HeadingNode {
     children: TextNode[];
 }
 
-export class MarketOverviewProps{
-    highestSale: number | undefined;
-    buyers: number | undefined;
-    organicVolume: number | undefined;
-    sales: number | undefined;
-    sellers: number | undefined;
-    time: string | undefined;
-    washVolume: number | undefined;
-    washVolumePercentage: number | undefined;
-    constructor(highestSale: any, buyers: any, sellers: any, organicVolume: any, sales: any, time: any, washVolume: any, washVolumePercentage: any){
-        this.highestSale =highestSale;
-        this.buyers = buyers;
-        this.sellers = sellers;
-        this.sales = sales;
-        this.time = time;
-        this.organicVolume = organicVolume;
-        this.washVolume = washVolume;
-        this.washVolumePercentage =  washVolumePercentage;
-    }
+export interface MarketOverviewProps{
+    highestSale: number;
+    buyers: number;
+    organicVolume: number;
+    sales: number;
+    sellers: number;
+    time: string;
+    washVolume: number;
+    washVolumePercentage: number;
 }
 
 export interface MarketStatisticsProps{
@@ -147,8 +137,11 @@ export interface BarChartState {
     }[];
 }
 
-export interface TableProps {
+export interface NFTStats {
     collection: string;
+    nftContractAddress: string;
+    tokenId: string;
+    imageUrl: string;
     collectionAge: string;
     dayBuyers: number;
     dayHighestSale: number;
@@ -175,4 +168,47 @@ export interface TableProps {
     weekWashVolume: number;
     weeknftTraded: number;
     nftParams: string;
-  }
+    nftSales: NFTSales[];
+    nftFloorPrice: NFTFloorPrice[];
+    nftTraders: NFTTraders[];
+    nftHolders: NFTHolders[]; 
+}
+
+export interface NFTSales {
+    amountOriginal: number;
+    nftStats?: NFTStats;
+    nftContractAddress: string;
+    tokenId: string;
+    imageUrl: string;
+    name?: string;
+}
+  
+export interface NFTFloorPrice {
+    nftStats?: NFTStats;
+    nftContractAddress: string;
+    day: string;
+    floor: number;
+    name?: string;
+}
+  
+export interface NFTTraders {
+    traderAddress: string;
+    nftStats?: NFTStats;
+    nftContractAddress: string;
+    weekTrades: number;
+    weekVolume: number;
+    name?: string;
+    a_ranking: number;
+}
+  
+export interface NFTHolders {
+    nftStats?: NFTStats;
+    nftContractAddress: string;
+    holder: string;
+    lastAquisitionTime: string;
+    lastShedTime: string;
+    heldCount: number;
+    name?: string;
+    amountMinted: number;
+}
+  
