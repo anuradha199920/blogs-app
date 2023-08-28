@@ -10,7 +10,7 @@ const duneAPI = process.env.DUNE_API!;
 
 export async function fetchDuneData(queryId: string){
     try{
-        const response = await fetch(duneAPI.replace('queryId', queryId), { next: { revalidate: 0 } });
+        const response = await fetch(duneAPI.replace('queryId', queryId), { next: { revalidate: 3600*6 } });
         if (!response.ok) {
             throw new Error('Failed to fetch data')
           }
