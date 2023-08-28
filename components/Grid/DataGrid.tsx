@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AgGridReact } from 'ag-grid-react';
-import {TableProps} from '@/components';
+import {NFTStats} from '@/components';
 import { ColDef, ValueFormatterParams } from 'ag-grid-community';
 import NFT from '../NFT';
 
@@ -74,7 +74,7 @@ const convertTablePropsToWeekColumnDefs: ColDef[] = [
     { field: 'collectionAge', headerName: 'Collection Age', minWidth: 150 }
   ];
 
-const  DataGrid = ({props}:{props: TableProps[]}) => {
+const  DataGrid = ({props}:{props: NFTStats[]}) => {
     const [gridApi, setGridApi] = useState(null);
     const [gridColumnApi, setGridColumnApi] = useState(null);
     const [rowData, setRowData] = useState(props);
