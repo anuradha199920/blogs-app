@@ -6,3 +6,4 @@ export const NFT_SALES = '2957478';
 export const NFT_HOLDERS = '2959627';
 export const NFT_TRADERS = '2960486';
 export const NFT_FLOOR_PRICE = '2945720';
+export const BIDS_PERCENTAGE = '2980562';

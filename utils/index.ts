@@ -2,7 +2,8 @@ import { request, gql } from 'graphql-request'
 import {Category, NFTHolders, Post, PostsConnection, NFTSales, NFTTraders, NFTFloorPrice, MarketOverviewProps, MarketStatisticsProps} from "@/components";
 import prisma from '../lib/prisma';
 import { NFTStats } from '@/components';
-import {TABLE_QUERY, NFT_FLOOR_PRICE, NFT_TRADERS, NFT_HOLDERS, NFT_SALES, MARKET_OVERVIEW_QUERY, MARKET_OVERVIEW_STATISTICS} from "@/components/constants"
+import {TABLE_QUERY, NFT_FLOOR_PRICE, NFT_TRADERS, NFT_HOLDERS, NFT_SALES, MARKET_OVERVIEW_QUERY, MARKET_OVERVIEW_STATISTICS, BIDS_PERCENTAGE} from "@/components/constants"
+import { BidsPercentage } from '@prisma/client';
 
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!;
@@ -292,6 +293,18 @@ export async function deleteMarketAnalysis(){
     }
 }
 
+export async function deleteBidsPercentage(){
+    try {
+        const deleteResult = await prisma.bidsPercentage.deleteMany({});
+        console.log(`${deleteResult.count} BidsPercentage records deleted.`);
+    } catch (error) {
+        console.error('Error deleting BidsPercentage:', error);
+        throw error;
+    } finally {
+        await prisma.$disconnect();
+    }
+}
+
 export async function insertNFTStatsInBulk(nftStats: NFTStats[]){
     try{
         const result  = await prisma.$transaction([
@@ -411,6 +424,23 @@ export async function insertMarketAnalysisInBluk(marketStatistics: MarketStatist
     }
 }
 
+export async function insertBidsPercentage(bidsPercentage: BidsPercentage[]){
+    try{
+        const result  = await prisma.$transaction([
+            prisma.bidsPercentage.createMany({
+                data: bidsPercentage,
+                skipDuplicates: false,
+            })
+        ])
+        console.log("saved: ", result);
+    } catch(error){
+        console.error("Error performing bulk insert: ", error);
+        throw error;
+    } finally{
+        await prisma.$disconnect();
+    }
+}
+
 export async function refershDatabase(){
     try{
         //1. fetch data from dune api
@@ -421,6 +451,7 @@ export async function refershDatabase(){
         const responseNftFloorPrice = await fetchDuneData(NFT_FLOOR_PRICE);
         const responseMarketOverView = await fetchDuneData(MARKET_OVERVIEW_QUERY);
         const responseMarketStatistics = await fetchDuneData(MARKET_OVERVIEW_STATISTICS);
+        const bidsPercentage = await fetchDuneData(BIDS_PERCENTAGE);
 
         //2. delete existing table entries
         await deleteNFTStats();
@@ -430,6 +461,7 @@ export async function refershDatabase(){
         await deleteNFTFloorPrice();
         await deleteMarketOverview();
         await deleteMarketAnalysis();
+        await deleteBidsPercentage();
 
         //3 save in database
         await insertNFTStatsInBulk(responseNftStats.result.rows);
@@ -439,6 +471,7 @@ export async function refershDatabase(){
         await insertNFTFloorPriceInBulk(responseNftFloorPrice.result.rows);
         await insertMarketOverviewInBulk(responseMarketOverView.result.rows);
         await insertMarketAnalysisInBluk(responseMarketStatistics.result.rows);
+        await insertBidsPercentage(bidsPercentage.result.rows);
 
     }catch(error){
         throw error;

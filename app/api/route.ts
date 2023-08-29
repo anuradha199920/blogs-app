@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import {refershDatabase} from "@/utils";
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
     try{
         console.log("Refreshing data.");
         const response = await refershDatabase();

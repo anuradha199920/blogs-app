@@ -5,7 +5,7 @@ export {default as NavBar} from './NavBar';
 export type { Post, Author, Category, PostsConnection, Comment, TextNode,
      LinkNode, ImageNode, ParagraphNode, HeadingNode, IFramesNode, CodeBlockNode,
      AreaChartState, MarketStatisticsProps, BarChartState, NFTStats, NFTSales, NFTFloorPrice,
-     NFTHolders, NFTTraders, MarketOverviewProps} from './types';
+     NFTHolders, NFTTraders, MarketOverviewProps, BidsPercentage} from './types';
 export {default as PostDetail} from './PostDetail';
 export {default as AuthorDetails} from "./AuthorDetails";
 export {default as CommentForm} from './CommentForm';
@@ -21,5 +21,7 @@ export {default as Container} from './Container';
 export {default as CardDataStats} from './CardDataStats';
 export {default as AreaChart} from './Charts/AreaChart';
 export {default as BarChart} from './Charts/BarChart';
+export {default as DoubleAxisBarLineChart} from './Charts/DoubleAxisBarLineChart';
+export {default as SingleBarChart} from './Charts/SingleBarChart';
 export {default as MarketOverview} from './MarketOverview';
 export {default as DataGrid} from './Grid/DataGrid';

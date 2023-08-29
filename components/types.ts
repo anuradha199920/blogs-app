@@ -142,32 +142,23 @@ export interface NFTStats {
     nftContractAddress: string;
     tokenId: string;
     imageUrl: string;
-    collectionAge: string;
     dayBuyers: number;
     dayHighestSale: number;
+    dayLowestSale: number;
     daySales: number;
     daySellers: number;
     dayVolume: number;
     dayWashVolume: number;
     daynftTraded: number;
-    diamondHands: number;
-    monthBuyers: number;
-    monthHighestSale: number;
-    monthSales: number;
-    monthSellers: number;
-    monthVolume: number;
-    monthWashVolume: number;
-    monthnftTraded: number;
-    supply: number;
     trade: string;
     weekBuyers: number;
     weekHighestSale: number;
+    weekLowestSale: number;
     weekSales: number;
     weekSellers: number;
     weekVolume: number;
     weekWashVolume: number;
     weeknftTraded: number;
-    nftParams: string;
     nftSales: NFTSales[];
     nftFloorPrice: NFTFloorPrice[];
     nftTraders: NFTTraders[];
@@ -212,3 +203,8 @@ export interface NFTHolders {
     amountMinted: number;
 }
   
+
+export interface BidsPercentage {
+    time: string;
+    bidsPercentage: number;
+}

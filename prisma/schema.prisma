@@ -23,27 +23,18 @@ model User {
 model NFTStats {
   nftContractAddress   String   @unique @id @map(name: "nft_contract_address")
   collection           String   @map(name: "collection")
-  collectionAge        String?   @map(name: "collection_age")
   dayBuyers            Int      @map(name: "day_buyers")
   dayHighestSale       Float    @map(name: "day_highest_sale")
+  dayLowestSale       Float    @map(name: "day_lowest_sale")
   daySales             Int      @map(name: "day_sales")
   daySellers           Int      @map(name: "day_sellers")
   dayVolume            Float?    @map(name: "day_volume")
   dayWashVolume        Float?    @map(name: "day_wash_volume")
   daynftTraded         Int?      @map(name: "day_nft_traded")
-  diamondHands         Float?    @map(name: "diamond_hands")
-  monthBuyers          Int      @map(name: "month_buyers")
-  monthHighestSale     Float    @map(name: "month_highest_sale")
-  monthSales           Int      @map(name: "month_sales")
-  monthSellers         Int      @map(name: "month_sellers")
-  monthVolume          Float    @map(name: "month_volume")
-  monthWashVolume      Float?    @map(name: "month_wash_volume")
-  monthnftTraded       Int?      @map(name: "month_nft_traded")
-  supply               Int?      @map(name: "supply")
-  tokenId              String   @map(name: "token_id")
   trade                String   @map(name: "trade")
   weekBuyers           Int      @map(name: "week_buyers")
   weekHighestSale      Float    @map(name: "week_highest_sale")
+  weekLowestSale       Float @map(name: "week_lowest_sale") 
   weekSales            Int      @map(name: "week_sales")
   weekSellers          Int      @map(name: "week_sellers")
   weekVolume           Float    @map(name: "week_volume")
@@ -129,4 +120,10 @@ model MarketAnalysis {
   sellers Int
   volume  Float
   @@map("marker_analysis")
+}
+
+model BidsPercentage {
+  time String @id
+  bidsPercentage Float @map("percentage_bids_volume")
+  @@map("bids_percentage")
 }

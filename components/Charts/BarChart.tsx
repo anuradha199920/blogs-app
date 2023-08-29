@@ -68,26 +68,20 @@ const options: ApexOptions = {
 
 
 
-const BarChart: React.FC<{props: BarChartState[]}> = ({props} :{props: BarChartState[]}) => {
+const BarChart: React.FC<{props: BarChartState[], title: string}> = ({props, title} :{props: BarChartState[], title: string}) => {
   const [state, setState] = useState<BarChartState>(props[1]);
   const [value, setValue] = useState("1");
   const handleOnChange = (e: any) =>{
     setValue(e.target.value);
     setState(props[parseInt(e.target.value)]);
   };
-  // const handleReset = () => {
-  //   setState((prevState) => ({
-  //     ...prevState,
-  //   }));
-  // };
-  // handleReset;
 
   return (
-    <div className="col-span-12 rounded-sm border border-stroke bg-[#E4E3D8] p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
-      <div className="mb-4 justify-between gap-4 sm:flex">
+  <> 
+    <div className="mb-4 justify-between gap-4 sm:flex">
         <div>
           <h4 className="text-xl font-semibold text-black dark:text-white">
-            Buyers&lsquo; Spending
+            {title}
           </h4>
         </div>
         <div>
@@ -136,8 +130,8 @@ const BarChart: React.FC<{props: BarChartState[]}> = ({props} :{props: BarChartS
           />
         </div>
       </div>
-    </div>
-  );
+      </>
+    );
 };
 
 export default BarChart;
