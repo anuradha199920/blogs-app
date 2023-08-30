@@ -159,6 +159,7 @@ export interface NFTStats {
     weekVolume: number;
     weekWashVolume: number;
     weeknftTraded: number;
+    totalnftTraded: number;
     nftSales: NFTSales[];
     nftFloorPrice: NFTFloorPrice[];
     nftTraders: NFTTraders[];

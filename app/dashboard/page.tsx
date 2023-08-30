@@ -203,16 +203,16 @@ const Dashboard: React.FC = async () => {
     <div className="sm:mx-0 sm:px-0  px-2 mx-auto py-2 lg:py-10 xl:px-10 ">
       <MarketOverview {...marketOverviewResponse}/>
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-        <div className="col-span-12 rounded-sm border border-stroke bg-[#E4E3D8] shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-8 p-7.5">
+        <div className="col-span-12 rounded-sm border border-stroke bg-[#e4e3d800] shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-8 p-7.5">
           <AreaChart props={buyersSellersAreaChartProps} chartId={"buyersSellers"} title={"NFT Market Participants Overview"}/>
         </div>
-        <div className="col-span-12 rounded-sm border border-stroke bg-[#E4E3D8] p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
+        <div className="col-span-12 rounded-sm border border-stroke bg-[#e4e3d800] p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
             <BarChart props={barChartProps} title={"Buyers'Spending"}/>
         </div >
-        <div className="col-span-12 rounded-sm border border-stroke bg-[#E4E3D8] shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-6 p-7.5">
+        <div className="col-span-12 rounded-sm border border-stroke bg-[#e4e3d800] shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-6 p-7.5">
           <DoubleAxisBarLineChart props={volumeAreaChartProps} chartId={"volumneChart"} title={"Volume"}/>
         </div>
-        <div className="col-span-12 rounded-sm border border-stroke bg-[#E4E3D8] p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-6">
+        <div className="col-span-12 rounded-sm border border-stroke bg-[#e4e3d800] p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-6">
             <SingleBarChart props={bidsPercentageProps} title={"Percent Bids Volume"}/>
         </div>
         <div className="col-span-12 ">

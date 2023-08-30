@@ -11,7 +11,7 @@ const duneAPI = process.env.DUNE_API!;
 
 export async function fetchDuneData(queryId: string){
     try{
-        const response = await fetch(duneAPI.replace('queryId', queryId), { next: { revalidate: 3600*6 } });
+        const response = await fetch(duneAPI.replace('queryId', queryId), { next: { revalidate: 0*6 } });
         if (!response.ok) {
             throw new Error('Failed to fetch data')
           }
@@ -446,8 +446,6 @@ export async function refershDatabase(){
         //1. fetch data from dune api
         const responseNftStats = await fetchDuneData(TABLE_QUERY);
         const responseNftSales = await fetchDuneData(NFT_SALES);
-        const responseNftHolders = await fetchDuneData(NFT_HOLDERS);
-        const responseNftTraders = await fetchDuneData(NFT_TRADERS);
         const responseNftFloorPrice = await fetchDuneData(NFT_FLOOR_PRICE);
         const responseMarketOverView = await fetchDuneData(MARKET_OVERVIEW_QUERY);
         const responseMarketStatistics = await fetchDuneData(MARKET_OVERVIEW_STATISTICS);
@@ -456,8 +454,6 @@ export async function refershDatabase(){
         //2. delete existing table entries
         await deleteNFTStats();
         await deleteNFTSales();
-        await deleteNFTHolders();
-        await deleteNFTTraders();
         await deleteNFTFloorPrice();
         await deleteMarketOverview();
         await deleteMarketAnalysis();
@@ -466,8 +462,6 @@ export async function refershDatabase(){
         //3 save in database
         await insertNFTStatsInBulk(responseNftStats.result.rows);
         await insertNFTSalesInBulk(responseNftSales.result.rows);
-        await insertNFTHoldersInBulk(responseNftHolders.result.rows);
-        await insertNFTTradersInBulk(responseNftTraders.result.rows);
         await insertNFTFloorPriceInBulk(responseNftFloorPrice.result.rows);
         await insertMarketOverviewInBulk(responseMarketOverView.result.rows);
         await insertMarketAnalysisInBluk(responseMarketStatistics.result.rows);
