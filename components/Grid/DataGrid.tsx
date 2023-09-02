@@ -4,13 +4,20 @@ import { useRouter } from 'next/navigation';
 import { AgGridReact } from 'ag-grid-react';
 import {NFTStats} from '@/components';
 import { ColDef, ValueFormatterParams } from 'ag-grid-community';
+import Image from "next/image"
 
 
 const convertTablePropsToDayColumnDefs: ColDef[] = [
-    { field: 'nftParams', headerName: ' ', cellRenderer: (params: ValueFormatterParams) => {
-        const nftParam = params.value.split("_");
-        console.log(nftParam);
-        return"image";
+    { field: 'imageUrl', headerName: ' ', cellRenderer: (params: ValueFormatterParams) => {
+        if(params.value != null) {
+            return (
+                <div className="relative h-16 w-16 flex-shrink-0">
+                    <Image alt={"not avaialble"} loading="lazy" decoding="async" data-nimg="fill" className="rounded-full object-cover bg-transparent h-full w-full absolute inset-0" sizes="100vw" src={params.value} width={'100'} height={'100'}/>
+                </div>
+            )
+        }else{
+            return "Not available"
+        }
     } },
     { field: 'collection', headerName: 'Collection Name', minWidth: 200},
     { field: 'trade', headerName: 'Trade',
@@ -29,10 +36,8 @@ const convertTablePropsToDayColumnDefs: ColDef[] = [
 ];
 
 const convertTablePropsToWeekColumnDefs: ColDef[] = [
-    { field: 'nftParams', headerName: ' ', cellRenderer: (params: ValueFormatterParams) => {
-        const nftParam = params.value.split("_");
-        console.log(nftParam);
-        return"image";
+    { field: 'imageUrl', headerName: ' ', cellRenderer: (params: ValueFormatterParams) => {
+        return params.value;
     } },
     { field: 'collection', headerName: 'Collection Name', minWidth: 200, wrapText: true},
     { field: 'trade', headerName: 'Trade', cellRenderer: (params: ValueFormatterParams) => {
@@ -47,6 +52,7 @@ const convertTablePropsToWeekColumnDefs: ColDef[] = [
     { field: 'weekHighestSale', headerName: '7D Highest Sale', valueFormatter:(params: ValueFormatterParams)=>(params.value??0).toFixed(2), sortable: true},
     { field: 'weekLowestSale', headerName: '7D Lowest Sale', valueFormatter:(params: ValueFormatterParams)=>(params.value??0).toFixed(2), sortable: true},
 ];
+
 
 const  DataGrid = ({props}:{props: NFTStats[]}) => {
     const [gridApi, setGridApi] = useState(null);

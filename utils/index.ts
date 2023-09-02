@@ -4,6 +4,8 @@ import prisma from '../lib/prisma';
 import { NFTStats } from '@/components';
 import {TABLE_QUERY, NFT_FLOOR_PRICE, NFT_TRADERS, NFT_HOLDERS, NFT_SALES, MARKET_OVERVIEW_QUERY, MARKET_OVERVIEW_STATISTICS, BIDS_PERCENTAGE} from "@/components/constants"
 import { BidsPercentage } from '@prisma/client';
+import { fetchNFTImages } from './quickNode';
+export {fetchNFTImages} from './quickNode';
 
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!;
@@ -11,7 +13,7 @@ const duneAPI = process.env.DUNE_API!;
 
 export async function fetchDuneData(queryId: string){
     try{
-        const response = await fetch(duneAPI.replace('queryId', queryId), { next: { revalidate: 0*6 } });
+        const response = await fetch(duneAPI.replace('queryId', queryId), { next: { revalidate: 3600*6 } });
         if (!response.ok) {
             throw new Error('Failed to fetch data')
           }
@@ -441,35 +443,117 @@ export async function insertBidsPercentage(bidsPercentage: BidsPercentage[]){
     }
 }
 
+export async function insertImages() {
+    try {
+        const val = await prisma.nFTStats.findMany({
+            select: {
+                nftContractAddress: true,
+                tokenId: true
+            }
+        });
+
+        for (const element of val) {
+            const nftImage = await fetchNFTImages(element.nftContractAddress, element.tokenId);
+            await new Promise(resolve => setTimeout(resolve, 1000)); // 1000 milliseconds = 1 second
+            console.log("saving nft : "+nftImage)
+            const result  = await prisma.$transaction([
+                prisma.nFTStats.update({
+                    where:{
+                        nftContractAddress: element.nftContractAddress,
+                        tokenId: element.tokenId
+                    },data:{
+                        imageUrl: nftImage
+                    }
+                })
+            ])
+        }
+    } catch (error) {
+        console.error('Error fetching NFT stats:', error);
+    }
+}
+
+
+
+
+
 export async function refershDatabase(){
     try{
         //1. fetch data from dune api
-        const responseNftStats = await fetchDuneData(TABLE_QUERY);
-        const responseNftSales = await fetchDuneData(NFT_SALES);
-        const responseNftFloorPrice = await fetchDuneData(NFT_FLOOR_PRICE);
-        const responseMarketOverView = await fetchDuneData(MARKET_OVERVIEW_QUERY);
-        const responseMarketStatistics = await fetchDuneData(MARKET_OVERVIEW_STATISTICS);
-        const bidsPercentage = await fetchDuneData(BIDS_PERCENTAGE);
+        // const responseNftStats = await fetchDuneData(TABLE_QUERY);
+        // const responseNftSales = await fetchDuneData(NFT_SALES);
+        // const responseNftFloorPrice = await fetchDuneData(NFT_FLOOR_PRICE);
+        // const responseMarketOverView = await fetchDuneData(MARKET_OVERVIEW_QUERY);
+        // const responseMarketStatistics = await fetchDuneData(MARKET_OVERVIEW_STATISTICS);
+        // const bidsPercentage = await fetchDuneData(BIDS_PERCENTAGE);
 
-        //2. delete existing table entries
-        await deleteNFTStats();
-        await deleteNFTSales();
-        await deleteNFTFloorPrice();
-        await deleteMarketOverview();
-        await deleteMarketAnalysis();
-        await deleteBidsPercentage();
+        // //2. delete existing table entries
+        // await deleteNFTStats();
+        // await deleteNFTSales();
+        // await deleteNFTFloorPrice();
+        // await deleteMarketOverview();
+        // await deleteMarketAnalysis();
+        // await deleteBidsPercentage();
 
-        //3 save in database
-        await insertNFTStatsInBulk(responseNftStats.result.rows);
-        await insertNFTSalesInBulk(responseNftSales.result.rows);
-        await insertNFTFloorPriceInBulk(responseNftFloorPrice.result.rows);
-        await insertMarketOverviewInBulk(responseMarketOverView.result.rows);
-        await insertMarketAnalysisInBluk(responseMarketStatistics.result.rows);
-        await insertBidsPercentage(bidsPercentage.result.rows);
+        // //3 save in database
+        // await insertNFTStatsInBulk(responseNftStats.result.rows);
+        // await insertNFTSalesInBulk(responseNftSales.result.rows);
+        // await insertNFTFloorPriceInBulk(responseNftFloorPrice.result.rows);
+        // await insertMarketOverviewInBulk(responseMarketOverView.result.rows);
+        // await insertMarketAnalysisInBluk(responseMarketStatistics.result.rows);
+        // await insertBidsPercentage(bidsPercentage.result.rows);
+        await insertImages();
 
     }catch(error){
         throw error;
     }
 }
 
+
+export async function getMarketAnalysis(){
+    try{
+        const result = await prisma.marketAnalysis.findMany({});
+        return result;
+    }catch(error){
+        console.error("Error occurred while performing fetch marketAnalysis Query: ", error);
+        throw error;
+    }finally{
+        await prisma.$disconnect();
+    }
+}
+
+export async function getMarketOverview(){
+    try{
+        const result = await prisma.marketOverview.findMany({});
+        return result;
+    }catch(error){
+        console.error("Error occurred while performing fetch marketOverview Query: ", error);
+        throw error;
+    }finally{
+        await prisma.$disconnect();
+    }
+}
   
+export async function getBidsPercentageVolume(){
+    try{
+        const result = await prisma.bidsPercentage.findMany({});
+        return result;
+    }catch(error){
+        console.error("Error occurred while performing fetch bids percentage Query: ", error);
+        throw error;
+    }finally{
+        await prisma.$disconnect();
+    }
+}
+
+export async function getNFTStats(){
+    try{
+        const result = await prisma.nFTStats.findMany({});
+        return result;
+    }catch(error){
+        console.error("Error occurred while performing fetch nft stats Query: ", error);
+        throw error;
+    }finally{
+        await prisma.$disconnect();
+    }
+}
+// export 

@@ -1,16 +1,11 @@
 import React from "react";
 import {AreaChart, BarChart, MarketOverview, BarChartState, DataGrid, DoubleAxisBarLineChart, SingleBarChart} from "@/components";
-import {fetchDuneData} from "@/utils";
+import {fetchDuneData, getMarketAnalysis, getMarketOverview, getBidsPercentageVolume, getNFTStats, fetchNFTImages} from "@/utils";
 import { MarketStatisticsProps, AreaChartState, MarketOverviewProps } from "@/components";
 import {WEEKDAY, MARKET_OVERVIEW_QUERY, MARKET_OVERVIEW_STATISTICS, TABLE_QUERY, BIDS_PERCENTAGE} from "@/components/constants"
-// without this the component renders on server and throws an error
-// import dynamic from "next/dynamic";
-// const MapOne = dynamic(() => import("../Maps/MapOne"), {
-//   ssr: false,
-// });
 
 function deserializeMarketOverview(dataList: any){
-  return dataList.result.rows.sort((a: any, b: any) =>(""+b.time).localeCompare(""+a.time));
+  return dataList.sort((a: any, b: any) =>(""+b.time).localeCompare(""+a.time));
 }
 
 interface ChartSeries{
@@ -46,7 +41,7 @@ type InputData = {
 }
 
 function getBuyersSellersFormatData(dataList: any){
-  dataList.result.rows.sort((a: any, b: any) =>(""+a.time).localeCompare(""+b.time));
+  dataList.sort((a: any, b: any) =>(""+a.time).localeCompare(""+b.time));
   let buyersSeries: ChartSeries = {
     name: 'Buyers',
     data: []
@@ -55,7 +50,7 @@ function getBuyersSellersFormatData(dataList: any){
     name: 'Sellers',
     data: []
   };
-  dataList.result.rows.forEach((data: any) =>{
+  dataList.forEach((data: any) =>{
     buyersSeries.data.push({
       x: new Intl.DateTimeFormat("en-US", {
         year: "numeric",
@@ -90,7 +85,7 @@ function getVolumeFormatData(dataList: any){
     data: []
   };
 
-  dataList.result.rows.forEach((data: MarketStatisticsProps) =>{
+  dataList.forEach((data: MarketStatisticsProps) =>{
     salesSeries.data.push({
       x: new Intl.DateTimeFormat("en-US", {
         year: "numeric",
@@ -101,7 +96,7 @@ function getVolumeFormatData(dataList: any){
     });
   });
 
-  dataList.result.rows.forEach((data: MarketStatisticsProps) =>{
+  dataList.forEach((data: MarketStatisticsProps) =>{
     volumeSeries.data.push({
       x: new Intl.DateTimeFormat("en-US", {
         year: "numeric",
@@ -120,7 +115,7 @@ function getExpenditureChartFormat(dataList: any){
     let eth0Series: any = [];
     let eth1Series: any = [];
     let eth2Series: any = [];
-    dataList.result.rows.slice(dataList.result.rows.length - 14, dataList.result.rows.length).forEach((data: any) =>{
+    dataList.slice(dataList.length - 14, dataList.length).forEach((data: any) =>{
       const day =  WEEKDAY[new Date(data.time.split(" ")[0]).getDay()];
       eth0Series.push({
         x: day,
@@ -162,7 +157,7 @@ function getExpenditureChartFormat(dataList: any){
 
 function getBidsPercentageData(dataList: any) {
   let bidsPercentageSeries: any = [];
-  dataList.result.rows.forEach((data: any) =>{
+  dataList.forEach((data: any) =>{
     bidsPercentageSeries.push({
       x: new Intl.DateTimeFormat("en-US", {
         year: "numeric",
@@ -181,7 +176,7 @@ function getBidsPercentageData(dataList: any) {
 }
 
 function getTableProps(dataList: any){
-  return dataList.result.rows.map((row: InputData) => ({
+  return dataList.map((row: InputData) => ({
     ...row,
     nftParams: `${row.nftContractAddress}_${row.tokenId}`,
   }));
@@ -189,15 +184,16 @@ function getTableProps(dataList: any){
 
 const Dashboard: React.FC = async () => {
  
-  const marketOverviewResponse: MarketOverviewProps[] = deserializeMarketOverview((await fetchDuneData(MARKET_OVERVIEW_QUERY)));
-  const marketStatisticsPropsResponse = await fetchDuneData(MARKET_OVERVIEW_STATISTICS);
-  const bidsPercentageResponse = await fetchDuneData(BIDS_PERCENTAGE);
-  marketStatisticsPropsResponse.result.rows.sort((a: any, b: any) =>(""+a.time).localeCompare(""+b.time));
-  const tableProps = getTableProps(await fetchDuneData(TABLE_QUERY));
+  const marketOverviewResponse: MarketOverviewProps[] = deserializeMarketOverview(await getMarketOverview());
+  const marketStatisticsPropsResponse = await getMarketAnalysis();
+  const bidsPercentageResponse = await getBidsPercentageVolume();
+  marketStatisticsPropsResponse.sort((a: any, b: any) =>(""+a.time).localeCompare(""+b.time));
+  const tableProps = getTableProps(await getNFTStats());
   const buyersSellersAreaChartProps: AreaChartState  = getBuyersSellersFormatData(marketStatisticsPropsResponse);
   const volumeAreaChartProps: AreaChartState = getVolumeFormatData(marketStatisticsPropsResponse);
   const barChartProps: BarChartState[] = getExpenditureChartFormat(marketStatisticsPropsResponse);
   const bidsPercentageProps: BarChartState[] = getBidsPercentageData(bidsPercentageResponse);
+
   return (
     <>
     <div className="sm:mx-0 sm:px-0  px-2 mx-auto py-2 lg:py-10 xl:px-10 ">
