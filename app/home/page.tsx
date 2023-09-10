@@ -1,5 +1,5 @@
 import { ThemeSwitch } from "@/components";
-import {fetchPaginatedPosts, fetchPosts} from "@/utils";
+import {fetchPaginatedPosts} from "@/utils";
 import Archive from '../archive/archive';
 const POSTS_PER_PAGE = 6;
 
