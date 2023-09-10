@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import {PostCard, PostWidget, Categories, Post, ThemeSwitch, HorizontalCard, FeaturedPosts, FancyAboutSection} from "@/components";
+import { ThemeSwitch } from "@/components";
 import {fetchPaginatedPosts, fetchPosts} from "@/utils";
 import Archive from '../archive/archive';
 const POSTS_PER_PAGE = 6;

@@ -1,90 +1,49 @@
 "use client"
-import { ApexOptions } from "apexcharts";
-import React, { useState } from "react";
-import dynamic from "next/dynamic";
-import { BarChartState } from "@/components";
-const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
-
-const options: ApexOptions = {
-  colors: [ "#001E85", "#4671DF", "#B5B5B5"],
-  chart: {
-    // events: {
-    //   beforeMount: (chart) => {
-    //     chart.windowResizeHandler();
-    //   },
-    // },
-    fontFamily: "Satoshi, sans-serif",
-    type: "bar",
-    height: 700,
-    stacked: true,
-    toolbar: {
-      show: false,
-    },
-    zoom: {
-      enabled: false,
-    },
-  },
-
-  responsive: [
-    {
-      breakpoint: 1536,
-      options: {
-        plotOptions: {
-          bar: {
-            borderRadius: 0,
-            columnWidth: "25%",
-          },
-        },
-      },
-    },
-  ],
-  plotOptions: {
-    bar: {
-      horizontal: false,
-      borderRadius: 0,
-      columnWidth: "25%",
-      borderRadiusApplication: "end",
-      borderRadiusWhenStacked: "last",
-    },
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  legend: {
-    position: "top",
-    horizontalAlign: "left",
-    fontFamily: "Satoshi",
-    fontWeight: 500,
-    fontSize: "14px",
-
-    markers: {
-      radius: 99,
-    },
-  },
-  fill: {
-    opacity: 1,
-  },
-};
+import { useEffect, useState } from 'react';
+import { StackedBarChart } from '@/components';
+import { WEEKDAY } from '../constants';
+import { useContext } from 'react';
+import TimeFilterContext from "@/contexts/MarketAnalysisContext";
 
 
-
-const BarChart: React.FC<{props: BarChartState[], title: string}> = ({props, title} :{props: BarChartState[], title: string}) => {
-  const [state, setState] = useState<BarChartState>(props[1]);
+const MarketSegmentation = () =>{
+  const {dataList} = useContext(TimeFilterContext)!;
+  const [state, setState] = useState<any>(null);
   const [value, setValue] = useState("1");
-  const handleOnChange = (e: any) =>{
+  useEffect(() => {
+    if (dataList.length) {
+      let formattedData: any[] = dataList.slice(dataList.length - 7, dataList.length).map((data: any) => {
+        const weekDay = WEEKDAY[new Date(data.time.split(" ")[0]).getDay()];
+        return {
+          ...data,
+          weekDay: weekDay,
+        };
+      });
+      setState(formattedData);
+    }
+  }, [dataList]);
+  
+  const handleOnChange = (e: any) => {
     setValue(e.target.value);
-    setState(props[parseInt(e.target.value)]);
+    let start, end;
+    if (e.target.value === "1") {
+      start = dataList.length - 7;
+      end = dataList.length;
+    } else {
+      start = dataList.length - 14;
+      end = dataList.length - 7;
+    }
+    let formattedData: any[] = dataList.slice(start, end).map((data: any) => {
+      const weekDay = WEEKDAY[new Date(data.time.split(" ")[0]).getDay()];
+      return {
+        ...data,
+        weekDay: weekDay,
+      };
+    });
+    setState(formattedData);
   };
-
-  return (
-  <> 
-    <div className="mb-4 justify-between gap-4 sm:flex">
-        <div>
-          <h4 className="text-xl font-semibold text-black dark:text-white">
-            {title}
-          </h4>
-        </div>
-        <div>
+    return (
+        <div className="h-[100%]">
           <div className="relative z-20 inline-block">
             <select
               name="#"
@@ -117,21 +76,12 @@ const BarChart: React.FC<{props: BarChartState[], title: string}> = ({props, tit
               </svg>
             </span>
           </div>
+          <div className="w-full h-[50vh]">
+            <StackedBarChart data={state} datakeys={['eth0', 'eth1', 'eth2']} xAxisDataKey={'weekDay'}/>  
+          </div>
+            
         </div>
-      </div>
-
-      <div>
-        <div id="barChart" className="-ml-5 -mb-9">
-          <ApexCharts
-            options={options}
-            series={state.series}
-            type="bar"
-            height={500}
-          />
-        </div>
-      </div>
-      </>
-    );
+    )
 };
 
-export default BarChart;
+export default MarketSegmentation;

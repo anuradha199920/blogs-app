@@ -5,9 +5,6 @@ import { Inter } from 'next/font/google'
 import {NavBar} from "@/components";
 import React from "react";
 import { Providers } from './providers';
-// import { getDefaultProvider } from "ethers";
-// import { NftProvider } from "use-nft";
-
 // We are using the "ethers" fetcher here.
 // const ethersConfig = {
 //   provider: getDefaultProvider("homestead"),
@@ -23,14 +20,12 @@ export const metadata: Metadata = {
 export default function RootLayout({children,}: { children: React.ReactNode }) {
     return (
     <html lang="en">
-        <body className={`${inter.className} bg-[#EFEBE7] dark:bg-[#434343]`}>
+        <body className={`${inter.className} bg-white dark:bg-[#434343]`}>
             <NavBar />
-            {/* <NftProvider fetcher={["ethers", ethersConfig]}> */}
                 <Providers>
                     {children}
                 </Providers>
                 <Analytics />
-            {/* </NftProvider> */}
         </body>
     </html>)
 }

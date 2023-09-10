@@ -1,21 +1,7 @@
-"use client"
-import React, {useContext, useEffect, useState} from 'react';
-
+import React from 'react';
 import Link from 'next/link';
-import {Category} from "@/components/types";
-import {fetchCategories} from "@/utils";
 
 const Header: React.FC<any> = ()=> {
-    const [categories, setCategories] = useState<Category[]>([]);
-
-    useEffect(() => {
-        fetchCategories().then(
-            (result)=>{
-                setCategories(result);
-            }
-        )
-    }, []);
-
     return (
         <div className="container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8">
             <nav>

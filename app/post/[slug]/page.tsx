@@ -1,8 +1,7 @@
 import React from "react";
 
-import {fetchPostDetails, fetchPostSlugs} from "@/utils";
-import {AuthorDetails, Categories, Category, CommentForm, Comments, PostDetail, OgImage, Container} from "@/components";
-import moment from "moment";
+import {fetchPostDetails} from "@/utils";
+import {PostDetail, OgImage, Container} from "@/components";
 import {AuthorCard} from "@/components";
 
 export default async function PostDetails ({params}: {params: {slug: String}}){

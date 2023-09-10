@@ -1,14 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import {refershDatabase} from "@/utils";
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
     try{
-        console.log("Refreshing data.");
-        const response = await refershDatabase();
+        await refershDatabase();
         return NextResponse.json(
             {
-              message: "successfully saved nft data in database." ,
-              response: response
+              response: "successfully saved"
             },
             {
               status: 200,
@@ -27,3 +25,4 @@ export async function GET(request: NextRequest) {
           );
     }
   }
+
