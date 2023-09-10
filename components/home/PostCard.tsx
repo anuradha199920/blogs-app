@@ -2,7 +2,6 @@ import React from 'react';
 import {Post} from "@/components/types";
 import moment from 'moment';
 import Link from "next/link";
-import Image from "next/image"
 
 const PostCard: React.FC<any> = ({post}: {post: Post})=> {
 

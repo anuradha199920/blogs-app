@@ -1,7 +1,11 @@
 import {CardDataStats, MarketOverviewProps} from "@/components";
+import { getMarketOverview } from "@/utils";
 
-
-export default function MarketOverview(marketOverviewResponse: MarketOverviewProps[]) {
+export default async function MarketOverview() {
+  function deserializeMarketOverview(dataList: any){
+    return dataList.sort((a: any, b: any) =>(""+b.time).localeCompare(""+a.time));
+  }
+  const marketOverviewResponse: MarketOverviewProps[] = deserializeMarketOverview(await getMarketOverview());
     return (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 ">
         <CardDataStats title="Total sales" total={`${marketOverviewResponse[0]?.sales ?? 0}`} rate={((((marketOverviewResponse[0]?.sales ?? 0) - (marketOverviewResponse[1]?.sales ?? 0) )/(marketOverviewResponse[0]?.sales ?? 1))*100)}>
@@ -55,7 +59,6 @@ export default function MarketOverview(marketOverviewResponse: MarketOverviewPro
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} className="w-6 h-6 stroke-red-700">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
         </svg>
-
         </CardDataStats>
       </div>
     );

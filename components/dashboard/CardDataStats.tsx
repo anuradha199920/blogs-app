@@ -18,7 +18,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({title, total, rate, childr
     levelDown = true;
   }
   return (
-    <div className="rounded-md border border-stroke bg-[#e4e3d800] py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div className="rounded-md border border-stroke py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
         {children}
       </div>

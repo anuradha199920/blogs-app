@@ -27,13 +27,13 @@ export default function AuthorCard({ author }: {author: Author}) {
             <div>
               {author.bio}
             </div>
-            <div className="mt-3">
+            {/* <div className="mt-3">
               <Link
                 href={`/about`}
                 className="bg-brand-secondary/20 rounded-full py-2 text-sm text-blue-600 dark:text-blue-500 ">
                 View Profile
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

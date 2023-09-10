@@ -7,7 +7,7 @@ import {
 import {useSearchParams, useRouter} from "next/navigation";
 import { useState, useEffect } from 'react';
 import useSWR from "swr";
-import {fetchPaginatedPosts} from "@/utils";
+import { fetchPaginatedPosts } from "@/utils";
 import { Container, PostCard } from "@/components";
 import {Post} from "@/components/types";
 
@@ -144,22 +144,8 @@ export default function Archive({ initialposts }:{ initialposts: Post[]}) {
             <rect x="0" y="0" rx="2" ry="2" width="505" height="505" />
             <rect x="0" y="623" rx="0" ry="0" width="480" height="18" />
             <rect x="0" y="568" rx="0" ry="0" width="154" height="21" />
-            <rect
-              x="-10"
-              y="433"
-              rx="2"
-              ry="2"
-              width="365"
-              height="1"
-            />
-            <rect
-              x="60"
-              y="756"
-              rx="0"
-              ry="0"
-              width="164"
-              height="27"
-            />
+            <rect x="-10" y="433" rx="2" ry="2" width="365" height="1" />
+            <rect x="60" y="756" rx="0" ry="0" width="164" height="27" />
             <rect
               x="277"
               y="763"
