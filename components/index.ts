@@ -12,7 +12,7 @@ export {default as AuthorCard} from './home/AuthorCard';
 export {default as Container} from './dashboard/Container';
 export {default as CardDataStats} from './dashboard/CardDataStats';
 export {default as MarketOverview} from './dashboard/MarketOverview';
-export {default as DataGrid} from './grid/DataGrid';
+// export {default as DataGrid} from './grid/DataGrid';
 export {default as MultiBarChart} from './charts/MultiBarChart';
 export {default as MarketSegmentation} from './dashboard/MarketSegmentation';
 export {default as SynchronizedAreaCharts} from './charts/SynchronizedAreaCharts';
