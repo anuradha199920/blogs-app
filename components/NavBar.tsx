@@ -7,24 +7,12 @@ import Link from "next/link";
 export default function Navbar() {
   const leftmenu = [
     {
-      label: "Home",
-      href: "/"
-    },
-    {
-      label: "About",
-      href: "/about"
-    },
-    {
       label: "Archive",
       href: "/archive"
     }
   ];
 
   const rightmenu = [
-    {
-      label: "Tweets",
-      href: "/tweets"
-    },
     {
       label: "Dashboard",
       href: "/dashboard"
