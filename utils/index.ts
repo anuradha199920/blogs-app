@@ -39,7 +39,6 @@ export async function fetchDuneGraphs(){
 }
 
 export async function fetchDuneDashboard(slug: String){
-    console.log("hi1: "+slug);
     try{
         const document = gql`query MyQuery($slug: String!) {
             duneDashboard(where: {slug: $slug}) {
@@ -54,7 +53,6 @@ export async function fetchDuneDashboard(slug: String){
             }
           }`;
         const result: { duneDashboard: DuneDashboard } = await request(graphqlAPI, document, {slug});
-       console.log("hi2");
         return result.duneDashboard;
     }catch(error){
         console.error("Error fetching dune dashboard:", error);
