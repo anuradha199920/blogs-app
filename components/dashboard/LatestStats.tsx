@@ -10,8 +10,8 @@ export default async function LatestStats(){
             <div className="flex flex-col bg-white m-auto p-auto">
                 <div className="flex overflow-x-scroll pb-10 hide-scroll-bar">
                     <div className="flex flex-nowrap">
-                        {duneDashboard.map(duneDashboard =>(
-                            <Link href={`/lateststats/${duneDashboard.slug}`} className="cursor-pointer">
+                        {duneDashboard.map((duneDashboard, index) =>(
+                            <Link href={`/lateststats/${duneDashboard.slug}`} className="cursor-pointer" key={"duneDashboardList:"+index}>
                                 <div className="inline-block px-3">
                                     <div className="rounded-md border border-stroke py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark align-middle w-[400px]">                                        
                                         <div className="flex flex-wrap items-start sm:flex-nowrap sm:space-x-6">
