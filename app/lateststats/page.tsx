@@ -13,10 +13,6 @@ export default async function LatestStats(){
                     </div>
                 ))
             }
-        
-            <div className="col-span-12 rounded-sm border border-stroke bg-[#FFFFFF] shadow-default dark:border-strokedark dark:bg-boxdark p-1.5 h-[50vh] xl:col-span-6 xl:p-4 lg:col-span-6">
-        <iframe src="https://dune.com/embeds/2203050/3613932" className="w-full h-full"></iframe>
-            </div>
             </div>
             </div>
         </>

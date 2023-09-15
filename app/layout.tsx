@@ -9,8 +9,8 @@ import { Providers } from './providers';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-    title: 'Crypto Blogs App',
-    description: 'Blogs for web3 enthusiasts',
+    title: '0xNotFungible',
+    description: '0x Not Fungible',
   }
 
 export default function RootLayout({children,}: { children: React.ReactNode }) {
