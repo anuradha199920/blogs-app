@@ -1,5 +1,5 @@
 import { request, gql } from 'graphql-request'
-import {Category, NFTHolders, Post, PostsConnection, NFTSales, NFTTraders, NFTFloorPrice, MarketOverviewProps, MarketStatisticsProps} from "@/components";
+import {Category, NFTHolders, Post, PostsConnection, NFTSales, NFTTraders, NFTFloorPrice, MarketOverviewProps, MarketStatisticsProps, DuneDashboard} from "@/components";
 import prisma from '../lib/prisma';
 import { NFTStats } from '@/components';
 import { BidsPercentage } from '@prisma/client';
@@ -35,6 +35,28 @@ export async function fetchDuneGraphs(){
     }catch (error){
         console.error("Error fetching dune graphs", error);
         return [];
+    }
+}
+
+export async function fetchDuneDashboard(slug: String){
+    try{
+        const document = gql`query MyQuery($slug: String!) {
+            duneDashboard(where: {slug: $slug}) {
+              slug
+              name
+              featuredImage {
+                url
+              }
+              dunegraphs {
+                src
+              }
+            }
+          }`;
+        const result: { duneDashboard: DuneDashboard } = await request(graphqlAPI, document, {slug});
+        return result.duneDashboard;
+    }catch(error){
+        console.error("Error fetching dune dashboard:", error);
+        return;
     }
 }
 

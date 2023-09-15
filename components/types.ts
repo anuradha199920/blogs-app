@@ -38,6 +38,15 @@ export interface Post {
     comments: Comment[]
 }
 
+export interface DuneDashboard{
+    name: string;
+    slug: string;
+    featuredImage: FeaturedImage;
+    dunegraphs: {
+        src: string;
+    }[]
+}
+
 export interface PostEdge {
     node: Post;
 }
