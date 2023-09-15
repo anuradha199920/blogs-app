@@ -42,9 +42,9 @@ export interface DuneDashboard{
     name: string;
     slug: string;
     featuredImage: FeaturedImage;
-    dunegraphs: {
+    dunegraphs?: {
         src: string;
-    }[]
+    }[];
 }
 
 export interface PostEdge {

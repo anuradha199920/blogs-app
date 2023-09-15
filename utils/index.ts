@@ -59,6 +59,25 @@ export async function fetchDuneDashboard(slug: String){
         return;
     }
 }
+export async function fetchDuneDashboardList(){
+    try{
+        const document = gql`query MyQuery() {
+            duneDashboards() {
+              slug
+              name
+              featuredImage {
+                url
+              }
+            }
+          }
+          `;
+        const result: { duneDashboards: DuneDashboard[] } = await request(graphqlAPI, document);
+        return result.duneDashboards;;
+    }catch(error){
+        console.error("Error fetching dune dashboards list:", error);
+        return;
+    }
+}
 
 export async function fetchPostDetails(slug: String): Promise<Post>{
     const document = gql`
