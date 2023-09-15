@@ -7,7 +7,7 @@ export default async function DuneDashboardPage({params}: {params: {slug: String
     if(duneDashboard){
         return(
             <div className="sm:mx-0 sm:px-0 px-2 mx-auto py-2 xl:px-8 ">
-                <div className="rounded-2xl bg-gray-50 px-8 text-gray-500 dark:bg-gray-800 dark:text-gray-400 items-center">
+                <div className="rounded-2xl px-8 text-gray-500 dark:bg-gray-800 dark:text-gray-400 items-center">
                     <div className="flex flex-wrap sm:flex-nowrap sm:space-x-6 flex-col mx-auto max-w-screen-md items-center">
                         <div className="relative h-35 w-35 flex-shrink-0 items-center shadow-md rounded-full shadow-slate-800">
                             <Image
