@@ -1,6 +1,6 @@
 import { fetchDuneGraphs } from "@/utils";
 
-export async function LatestStats(){
+export default async function LatestStats(){
     const duneGraphsSrc: {src: string}[] = await fetchDuneGraphs();
     return (
         <>
@@ -22,5 +22,3 @@ export async function LatestStats(){
         </>
     );
 };
-
-export default LatestStats;
