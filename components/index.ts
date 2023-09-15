@@ -19,3 +19,4 @@ export {default as SynchronizedAreaCharts} from './charts/SynchronizedAreaCharts
 export {default as ComposedCharts} from './charts/ComposedCharts';
 export {default as MarketAnalysis} from './dashboard/MarketAnalysis';
 export {default as StackedBarChart} from './charts/StackedBarChart';
+export {default as LatestStats} from './dashboard/LatestStats';
