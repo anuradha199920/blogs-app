@@ -24,7 +24,7 @@ export default async function LatestStats(){
                                                     sizes="96px"
                                                 />
                                             </div>
-                                            <div className="mb-3 h-24">
+                                            <div className="mb-3 h-24 flex items-center">
                                                 <h3 className="text-xl font-bold text-gray-800 dark:text-gray-300">
                                                     {duneDashboard.name}
                                                 </h3>
