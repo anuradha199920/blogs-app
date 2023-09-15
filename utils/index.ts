@@ -22,6 +22,21 @@ export async function fetchDuneData(queryId: string){
     }
 }
 
+export async function fetchDuneGraphs(){
+    try{
+        const document = gql`query DuneGraphs {
+            dunegraphs {
+              src
+            }
+          }
+          `;
+        const result: {dunegraphs: {src: string}[]} = await request(graphqlAPI, document);
+        return result.dunegraphs;
+    }catch (error){
+        console.error("Error fetching dune graphs", error);
+        return [];
+    }
+}
 
 export async function fetchPostDetails(slug: String): Promise<Post>{
     const document = gql`
