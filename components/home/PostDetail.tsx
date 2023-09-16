@@ -97,7 +97,6 @@ export default function PostDetail({post}: {post: Post}){
                             width={obj.width} 
                             height={obj.height} 
                             key={index}
-                            className="hover:relative z-10 transform transition-transform duration-500  hover:scale-100"
                             />
                         </div>)
                 }}

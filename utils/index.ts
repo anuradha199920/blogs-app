@@ -485,4 +485,3 @@ export async function getNFTStats(){
         await prisma.$disconnect();
     }
 }
-// export 
