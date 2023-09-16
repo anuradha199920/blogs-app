@@ -15,23 +15,23 @@ const mobilemenu = [
     href: "/archive"
   }];
   return (
-    <div className="sticky top-2 z-10 border-x-2 px-4 shadow-md dark:border-strokedark dark:bg-boxdark py-2 w-[100%] border-stoke bg-gray-100 bg-opacity-90 mb-4">
-      <nav className="h-max rounded-none px-4 lg:px-8">
+    <div className="sticky top-0 z-10 border-x-2 px-4 shadow-md dark:border-strokedark dark:bg-boxdark py-2 w-[100%] border-stoke bg-white bg-opacity-90 mb-4 h-15">
+      <nav className="rounded-none px-4 lg:px-8">
         <Disclosure key={"navBarDisclosure"}>
           {({ open }) => (
             <>
               <div className="flex flex-wrap justify-between md:flex-nowrap md:gap-10">
                 <div className="flex w-full items-center justify-between md:w-auto">
-                  <div className="relative h-10 w-10 flex-shrink-0 shadow-md rounded-full">
-                    <Link href={`/dashboard`}>
-                        <Image
-                            src={"https://media.graphassets.com/KnjCa1K9QI25i623uAF6"}
-                            alt={"Eekeyguy"}
-                            fill
-                            className="rounded-full object-cover fill"
-                            sizes="96px"
-                        />
-                        </Link>
+                    <div className="relative h-25 w-25 flex-shrink-0 shadow-md rounded-full">
+                      <Link href={`/dashboard`}>
+                          <Image
+                              src={"https://media.graphassets.com/KnjCa1K9QI25i623uAF6"}
+                              alt={"Eekeyguy"}
+                              fill
+                              className="rounded-full object-cover fill"
+                              sizes="96px"
+                          />
+                      </Link>
                     </div>
                     <Disclosure.Button
                       aria-label="Toggle Menu"
@@ -58,13 +58,13 @@ const mobilemenu = [
                     </Disclosure.Button>
                   </div>
 
-                <div className="order-2 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row">
+                <div className="order-2 hidden w-full flex-col justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row py-2">
                   {mobilemenu.map((item, index) => (
                     <Fragment key={`${item.label}${index}`}>
                         <Link
                           href={item.href}
                           key={`${item.label}${index}`}
-                          className="px-5 py-2 text-md font-medium text-gray-800 hover:text-blue-500 dark:text-gray-400 hover:underline transform ease-in-out delay-400 duration-300 underline-offset-2">
+                          className="px-5 py-2 text-md font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400 hover:underline transform ease-in-out delay-400 duration-300 underline-offset-2">
                           <span> {item.label}</span>
                         </Link>
                     </Fragment>
