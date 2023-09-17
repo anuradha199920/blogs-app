@@ -20,7 +20,7 @@ const mobilemenu = [
     href: "/home#clients"
   },];
   return (
-    <div className="sticky top-0 z-10  py-2 w-[100%] border-stoke bg-white bg-opacity-90 mb-4 h-15  border-b-[1px] shadow-md">
+    <div className="sticky top-0 z-20  py-2 w-[100%] border-stoke bg-white bg-opacity-90 mb-4 h-15  border-b-[1px] shadow-md">
       <nav className="rounded-none px-4 lg:px-8 flex justify-between">
         <Disclosure key={"navBarDisclosure"}>
           {({ open }) => (
