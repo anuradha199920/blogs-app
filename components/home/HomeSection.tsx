@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image"
 
 const title = "WRITE YOUR OWN GROWTH STORY";
-const subtitle = "WITH OUR ON CHAIN ANALYSIS";
+const subtitle = "WITH OUR ON-CHAIN ANALYTICS";
 const description = "Empower your Web3 journey with the untapped wisdom of blockchain data";
 const HomeSection= () =>{
     return (
