@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function OgImageHome({post}: {post: Post}){
     return (
-        <div className="relative w-[400px] h-[300px] py-0 my-0 ">
+        <div className="relative w-[90%] md:w-[400px] h-[300px] py-0 my-0 mx-[5%] md:mx-0">
             <div className="z-0 flex items-center rounded-md my-0 py-0 relative h-full">
                 <div className="absolute -z-10 h-full w-full before:absolute before:z-10 before:h-full before:w-full before:bg-black/30 before:rounded-md ">
                     <img alt="Thumbnail" loading="eager" decoding="async" data-nimg="fill" className=" rounded-md object-cover bg-transparent h-full w-full relative inset-0" sizes="100vw" src={post.featuredImage.url}/>
