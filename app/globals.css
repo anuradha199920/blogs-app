@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&effect=neon|outline|emboss|shadow-multiple');
 @import "prism.css";
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -7,6 +7,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.stylish-font{
+  font-family: "Press Start 2P", sans-serif;
+  font-size: large;
+}
 
 .container-fluid{
   width: 100%;
