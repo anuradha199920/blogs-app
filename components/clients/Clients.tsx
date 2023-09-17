@@ -16,7 +16,7 @@ const Clients = ()=>{
     },[])
     if(clientsList){
         return(
-        <div className="w-[98%] border-y-2 m-4 flex flex-wrap items-center justify-center">
+        <div className="w-full md:w-[98%] border-y-2 m-0 my-4 md:m-4 flex flex-wrap items-center justify-center">
             {clientsList.map(client=>(
                 <ClientCard client={client} key={"client"+client.userName}/>
             ))}
