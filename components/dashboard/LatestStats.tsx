@@ -37,15 +37,15 @@ export default function LatestStats(){
         return (<>
             <div className="grid grid-cols-12" >
                 <div className="w-full col-span-12">
-                <div className="flex flex-col m-auto p-auto w-full ">
+                <div className="flex flex-col md:m-auto md:p-auto w-full">
                 <div className="flex overflow-x-scroll pb-10 hide-scroll-bar">
                     <div className="flex flex-nowrap overflow-y-visible">
                         {duneDashboard.map((duneDashboard, index) =>(
                             <div key={"duneDashboardList:"+index} >
-                                <div className="inline-block px-3 relative mt-10" onClick={() => handleClick(duneDashboard)}>
-                                    <div className={`relative rounded-md border py-8 px-7.5 shadow-md align-middle w-[400px] hover:bg-sky-100 cursor-pointer ${param?.slug==duneDashboard.slug? 'bg-sky-100':'bg-white'}`}>                                        
-                                        <div className="flex flex-wrap items-start sm:flex-nowrap sm:space-x-6" >
-                                            <div className="relative mt-1 h-30 w-30 flex-shrink-0">  
+                                <div className="inline-block px-1 md:px-3 relative mt-10" onClick={() => handleClick(duneDashboard)}>
+                                    <div className={`relative p-2 rounded-md border md:py-8 md:px-7.5 shadow-md align-middle md:w-[400px] w-[200px] hover:bg-sky-100 cursor-pointer ${param?.slug==duneDashboard.slug? 'bg-sky-100':'bg-white'}`}>                                        
+                                        <div className="flex flex-wrap items-center sm:flex-nowrap sm:space-x-6 justify-evenly" >
+                                            <div className="relative mt-1 h-15 w-15 flex-shrink-0 md:h-30 md:w-30">  
                                                 <Image
                                                     src={duneDashboard.featuredImage.url}
                                                     alt={duneDashboard.name}
@@ -55,7 +55,7 @@ export default function LatestStats(){
                                                 />
                                             </div>
                                             <div className="mb-3 h-24 flex items-center">
-                                                <h3 className="text-xl font-bold text-gray-800 dark:text-gray-300">
+                                                <h3 className="lg:text-xl text-sm font-bold text-gray-800 dark:text-gray-300">
                                                     {duneDashboard.name}
                                                 </h3>
                                             </div>
