@@ -6,7 +6,7 @@ import React, {useEffect, useState} from "react";
 
 export default function LatestStats(){
     const [duneDashboard, setDuneDashboard] = useState<DuneDashboard[]>();
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(false);
     const [param, setParam] = useState<DuneDashboard>();
 
     useEffect(()=>{
@@ -15,6 +15,7 @@ export default function LatestStats(){
             setDuneDashboard(response);
             if(response?.length && response.length > 0 ){
                 setParam(response[0]);
+                setIsVisible(true);
             }
         }).catch((error)=>{
             console.log(error);
