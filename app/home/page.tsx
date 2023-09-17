@@ -15,7 +15,7 @@ export default async function Home() {
             </section> */}
             <RevealOnScroll>
                 <section id="dashboard">
-                    <Dashboard/>;
+                    <Dashboard/>
                 </section>
             </RevealOnScroll>
             <RevealOnScroll>
