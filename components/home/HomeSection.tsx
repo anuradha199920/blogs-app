@@ -18,7 +18,7 @@ const HomeSection= () =>{
                 <h2 className="text-3xl font-semibold stylish-font text-[#545454] lg:text-4xl lg:leading-tight w-[100%] tracking-tighter">
                     {subtitle}
                 </h2>
-                <h3 className=" font-semibold text-[#2e2e2e] lg:text-md lg:leading-tight w-[100%] tracking-wide">
+                <h3 className=" font-semibold text-[#3C61BD] lg:text-md lg:leading-tight w-[100%] tracking-wide">
                     {description}
                 </h3>
             </div>
