@@ -8,7 +8,7 @@ export default function Navbar() {
 const mobilemenu = [
   {
     label: "Home",
-    href: "#home"
+    href: "/home"
   },{
     label: "Our Work",
     href: "#dashboard"
@@ -20,7 +20,7 @@ const mobilemenu = [
     href: "#clients"
   },];
   return (
-    <div className="sticky top-0 z-10  py-2 w-[100%] border-stoke bg-white bg-opacity-90 mb-4 h-15 shadow-[#65a9fb] border-[#36e9fb] border-b-[1px] shadow-md">
+    <div className="sticky top-0 z-10  py-2 w-[100%] border-stoke bg-white bg-opacity-90 mb-4 h-15  border-b-[1px] shadow-md">
       <nav className="rounded-none px-4 lg:px-8 flex justify-between">
         <Disclosure key={"navBarDisclosure"}>
           {({ open }) => (
@@ -60,7 +60,7 @@ const mobilemenu = [
                     </Link>
                 </div> */}
                 <div className="relative h-25 w-25 flex-shrink-0 shadow-md rounded-full ">
-                  <Link href={`#dashboard`}>
+                  <Link href={`https://twitter.com/eekeyguy_eth`}>
                       <Image
                           src={"https://media.graphassets.com/KnjCa1K9QI25i623uAF6"}
                           alt={"Eekeyguy"}

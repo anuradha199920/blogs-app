@@ -6,25 +6,22 @@ const Blogs =  async()=>{
     if(initialposts){
         return (
             <>
-            <div className="grid grid-cols-12 w-full">
-                    <div className="w-full col-span-12 mx-auto">
-                    <div className="flex flex-col m-auto p-auto w-full ">
-                    <div className="flex overflow-x-scroll hide-scroll-bar h-[600px] my-0 py-0">
-                        <div className="flex flex-nowrap h-full overflow-y-clip">
+            <div className="w-full mx-0">
+                    <div className="flex flex-col w-full ">
+                    <div className="flex overflow-x-scroll hide-scroll-bar h-[350px] my-0 py-0 w-full ">
+                        <div className="flex flex-nowrap h-full overflow-y-clip my-0 py-0 w-full">
                             {initialposts.map((post, index) =>(
-                                <div key={"blogs:"+index} >
-                                    <div className="relative inline-block px-3 h-full">
+                                <div key={"blogs:"+index}>
+                                    <div className="relative inline-block px-3 h-full my-0 py-0 ">
                                         <OgImageHome post={post}/>
                                     </div>
                                 </div>))}
                         </div>
                     </div>
-                    
-                </div>
                     </div>
                 </div>
                 </>
-    );
+    )
     }else{
         return (
             <>
