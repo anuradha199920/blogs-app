@@ -1,9 +1,8 @@
 export {default as PostCard} from './home/PostCard';
 export {default as NavBar} from './NavBar';
 export type { Post, Author, Category, PostsConnection, Comment, TextNode,
-     LinkNode, ImageNode, ParagraphNode, HeadingNode, IFramesNode, CodeBlockNode,
-     AreaChartState, MarketStatisticsProps, BarChartState, NFTStats, NFTSales, NFTFloorPrice,
-     NFTHolders, NFTTraders, MarketOverviewProps, BidsPercentage, DuneDashboard, Client} from './types';
+     LinkNode, ImageNode, ParagraphNode, HeadingNode, IFramesNode,
+      CodeBlockNode, DuneDashboard, Client} from './types';
 export {default as PostDetail} from './home/PostDetail';
 export {default as AuthorDetails} from "./home/AuthorDetails";
 export {default as ThemeSwitch} from './ThemeSwitch';
