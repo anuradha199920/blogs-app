@@ -20,7 +20,7 @@ export default function LatestStats(){
         }).catch((error)=>{
             console.log(error);
         })
-    },[isVisible])
+    },[])
 
     const handleClick = (value: any) => {
         setParam(value);
