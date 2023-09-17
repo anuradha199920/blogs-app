@@ -213,8 +213,15 @@ export interface NFTHolders {
     amountMinted: number;
 }
   
-
 export interface BidsPercentage {
     time: string;
     bidsPercentage: number;
+}
+
+export interface Client {
+    userName: string;
+    twitterLink: string;
+    profilePicture: {
+        url:string
+    }
 }

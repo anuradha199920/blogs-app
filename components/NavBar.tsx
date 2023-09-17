@@ -5,17 +5,22 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar() {
-
 const mobilemenu = [
   {
-    label: "Dashboard",
-    href: "/dashboard"
+    label: "Home",
+    href: "#home"
   },{
-    label: "Archive",
-    href: "/archive"
-  }];
+    label: "Our Work",
+    href: "#dashboard"
+  },{
+    label: "Blogs",
+    href: "#blogs"
+  },{
+    label: "Clients",
+    href: "#clients"
+  },];
   return (
-    <div className="sticky top-0 z-10 border-x-2 px-4 shadow-md dark:border-strokedark dark:bg-boxdark py-2 w-[100%] border-stoke bg-white bg-opacity-90 mb-4 h-15">
+    <div className="sticky top-0 z-10  py-2 w-[100%] border-stoke bg-white bg-opacity-90 mb-4 h-15 shadow-[#65a9fb] border-[#36e9fb] border-b-[1px] shadow-md">
       <nav className="rounded-none px-4 lg:px-8 flex justify-between">
         <Disclosure key={"navBarDisclosure"}>
           {({ open }) => (
@@ -49,8 +54,8 @@ const mobilemenu = [
                 </div>
               </Disclosure.Panel>
               <div className="flex w-full items-center justify-between md:w-auto">
-                <div className="relative h-25 w-25 flex-shrink-0 shadow-md rounded-full">
-                  <Link href={`/dashboard`}>
+                <div className="relative h-25 w-25 flex-shrink-0 shadow-md rounded-full ">
+                  <Link href={`#dashboard`}>
                       <Image
                           src={"https://media.graphassets.com/KnjCa1K9QI25i623uAF6"}
                           alt={"Eekeyguy"}
