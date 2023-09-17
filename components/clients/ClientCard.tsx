@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const ClientCard = ({client}:{client: Client}) =>{
     return (
-        <div className="w-[100px] md:w-[100px] inline-block px-0 md:px-3 relative mt-2 mx-0" >
+        <div className="w-[100px] md:w-[100px] inline-block px-0 md:px-3 relative mt-2 mx-0 md:mx-5" >
             <Link href={client.twitterLink}>
             <div className={`relative align-middle w-full cursor-pointer`}>                                        
             <div className="flex flex-wrap flex-col items-center sm:flex-nowrap sm:space-x-6" >
