@@ -16,11 +16,11 @@ export default function DuneDashboardPage({params}:{ params: DuneDashboard}){
     if(params){
         return(
             <>
-            <div className="sm:mx-0 sm:px-0 px-2 mx-auto py-2 xl:px-8 ">
-                <div className=" grid gap-10 lg:gap-10 grid-cols-12">
+            <div className="mx-0 px-0 md:px-2 py-2 xl:px-8 ">
+                <div className="grid gap-2 lg:gap-10 grid-cols-12">
                     {
                         params.dunegraphs?.map((duneGraph, index)=>(
-                            <div className={`col-span-12 rounded-sm border border-stroke bg-[#FFFFFF] shadow-default dark:border-strokedark dark:bg-boxdark p-1.5 h-[50vh] xl:col-span-6 xl:p-4  lg:col-span-6 ${index>=displayCount?'hidden':''}`} key={"duneGraphdive"+index}>
+                            <div className={`col-span-12 rounded-sm border border-stroke bg-[#FFFFFF] shadow-default dark:border-strokedark dark:bg-boxdark p-1.5 h-[35vh] lg:h-[50vh] xl:col-span-6 xl:p-4  lg:col-span-6 ${index>=displayCount?'hidden':''}`} key={"duneGraphdive"+index}>
                                 <iframe src={duneGraph.src} className="w-full h-full" key={"duneGraph"+index}></iframe>
                             </div>
                         ))
@@ -32,7 +32,7 @@ export default function DuneDashboardPage({params}:{ params: DuneDashboard}){
  onClick={handleOnClick}>Load More...</button>
             </div>
             </>
-        );
+        )
     }else{
         return (
             <>
@@ -40,7 +40,7 @@ export default function DuneDashboardPage({params}:{ params: DuneDashboard}){
             Loading...
            </div>
             </>
-        );     
+        )   
     }
     
 };
