@@ -39,21 +39,7 @@ const mobilemenu = [
                   ))}
                 </div>
               </div>
-              <Disclosure.Panel>
-                <div className="order-2 -ml-4 mt-4 flex w-full flex-col items-center justify-start md:hidden">
-                  {mobilemenu.map((item, index) => (
-                    <Fragment key={`${item.label}${index}`}>
-                        <Link
-                          href={item.href}
-                          key={`${item.label}${index}`}
-                          className="w-full px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400">
-                          {item.label}
-                        </Link>
-                    </Fragment>
-                  ))}
-                </div>
-              </Disclosure.Panel>
-              <div className="flex w-full items-center justify-between md:w-auto">
+              <div className="flex w-full justify-between md:w-auto">
                 {/* <div className="relative h-8 w-8 flex-shrink-0">
                     <Link href="https://media.graphassets.com/kjDrozpSScypnIkI8mlG">
                         <Image alt={"eekeyguy_eth"} loading="lazy" decoding="async" data-nimg="fill" className="rounded-full object-cover bg-transparent h-full w-full absolute inset-0" sizes="100vw" src={"https://media.graphassets.com/kjDrozpSScypnIkI8mlG"} width={'100'} height={'100'}/>
@@ -70,6 +56,21 @@ const mobilemenu = [
                       />
                   </Link>
                 </div>
+                <div className="flex items-start">
+                <Disclosure.Panel>
+                <div className="order-2 -ml-4 mt-4 flex w-full flex-col items-center justify-start md:hidden bg-white">
+                  {mobilemenu.map((item, index) => (
+                    <Fragment key={`${item.label}${index}`}>
+                        <Link
+                          href={item.href}
+                          key={`${item.label}${index}`}
+                          className="w-full px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400">
+                          {item.label}
+                        </Link>
+                    </Fragment>
+                  ))}
+                </div>
+              </Disclosure.Panel>
                 <Disclosure.Button
                   aria-label="Toggle Menu"
                   className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-blue-500 focus:outline-none dark:text-gray-300 md:hidden"
@@ -93,7 +94,10 @@ const mobilemenu = [
                     )}
                   </svg>
                 </Disclosure.Button>
+                </div>
+                
               </div>
+             
             </>
           )}
         </Disclosure>
