@@ -32,7 +32,7 @@ const mobilemenu = [
                         <Link
                           href={item.href}
                           key={`${item.label}${index}`}
-                          className="px-5 py-2 text-md font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400 hover:underline transform ease-in-out delay-400 duration-300 underline-offset-2">
+                          className="px-5 py-2 text-lg font-semibold text-[#3C61BD] hover:text-blue-500 dark:text-gray-400 hover:underline transform ease-in-out delay-400 duration-300 underline-offset-2">
                           <span> {item.label}</span>
                         </Link>
                     </Fragment>
@@ -54,6 +54,11 @@ const mobilemenu = [
                 </div>
               </Disclosure.Panel>
               <div className="flex w-full items-center justify-between md:w-auto">
+                {/* <div className="relative h-8 w-8 flex-shrink-0">
+                    <Link href="https://media.graphassets.com/kjDrozpSScypnIkI8mlG">
+                        <Image alt={"eekeyguy_eth"} loading="lazy" decoding="async" data-nimg="fill" className="rounded-full object-cover bg-transparent h-full w-full absolute inset-0" sizes="100vw" src={"https://media.graphassets.com/kjDrozpSScypnIkI8mlG"} width={'100'} height={'100'}/>
+                    </Link>
+                </div> */}
                 <div className="relative h-25 w-25 flex-shrink-0 shadow-md rounded-full ">
                   <Link href={`#dashboard`}>
                       <Image

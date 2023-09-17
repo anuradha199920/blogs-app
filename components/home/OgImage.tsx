@@ -17,12 +17,12 @@ export default function OgImage({post}: {post: Post}){
                     <div className="flex flex-col gap-3 md:flex-row md:items-center">
                         <div className="flex gap-3">
                             <div className="relative h-5 w-5 flex-shrink-0">
-                                <Link href="/about">
+                                <Link href="https://twitter.com/eekeyguy_eth">
                                     <Image alt={post.author.name} loading="lazy" decoding="async" data-nimg="fill" className="rounded-full object-cover bg-transparent h-full w-full absolute inset-0" sizes="100vw" src={post.author.profilePicture.url} width={'100'} height={'100'}/>
                                 </Link>
                             </div>
                             <p className="text-gray-100 ">
-                                <Link href="/about">{post.author.name}</Link> 
+                                <Link href="https://twitter.com/eekeyguy_eth">{post.author.name}</Link> 
                                 <span className="hidden pl-2 md:inline"> ·</span>
                             </p>
                         </div>
