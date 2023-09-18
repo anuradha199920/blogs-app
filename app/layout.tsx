@@ -18,25 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children,}: { children: React.ReactNode }) {
     return (
     <html lang="en">
-        <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-        id="google-analytics"
-      />
-
-      <Script strategy="lazyOnload" id="google-analytics-1">
-        {`
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-                    page_path: window.location.pathname,
-                    });
-                `}
-      </Script>
-       <Head>
-            <title>0x Not Fungible</title>
-       </Head>
+        
         <body className={`${inter.className} bg-white dark:bg-[#434343]`}>
 
             <NavBar />
