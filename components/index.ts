@@ -20,3 +20,5 @@ export {default as BlogsSection} from './blogs/BlogsSection';
 export {default as ClientCard} from './clients/ClientCard';
 export {default as Clients} from './clients/Clients';
 export {default as ClientsSection} from './clients/ClientsSection';
+export {default as ContactUs} from './contactus/ContactUs';
+export {default as ContactUsSection} from './contactus/ContactUsSection';
