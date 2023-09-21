@@ -1,8 +1,7 @@
 import { Dashboard, HomeSection, RevealOnScroll, BlogsSection, ClientsSection, ContactUsSection } from '@/components';
 import Script from "next/script";
 
-export default async function Home() {
-    // const initialposts = await fetchPaginatedPosts([0,POSTS_PER_PAGE]);
+export default function Home() {
     return (
         <main className="overflow-hidden scroll-smooth">
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}/>
@@ -19,9 +18,6 @@ export default async function Home() {
             <section id="home">
                 <HomeSection/>
             </section>
-            {/* <section id="archive">
-                <Archive initialposts={initialposts} />;
-            </section> */}
             <RevealOnScroll>
                 <section id="dashboard">
                     <Dashboard/>
