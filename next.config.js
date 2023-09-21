@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
     images: {
         domains: ['media.graphassets.com', 'other-host.com', 'another-host.com','images.quicknode.workers.dev'],
     },
