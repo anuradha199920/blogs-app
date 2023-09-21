@@ -1,7 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&effect=neon|outline|emboss|shadow-multiple');
-@import "prism.css";
-@import 'ag-grid-community/styles/ag-grid.css';
-@import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 @tailwind base;
 @tailwind components;
