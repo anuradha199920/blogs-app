@@ -1,8 +1,5 @@
-import {fetchPaginatedPosts} from "@/utils";
-import Archive from '../archive/archive';
-import { Dashboard, HomeSection, RevealOnScroll, BlogsSection, ClientsSection } from '@/components';
+import { Dashboard, HomeSection, RevealOnScroll, BlogsSection, ClientsSection, ContactUsSection } from '@/components';
 import Script from "next/script";
-const POSTS_PER_PAGE = 6;
 
 export default async function Home() {
     // const initialposts = await fetchPaginatedPosts([0,POSTS_PER_PAGE]);
@@ -38,6 +35,11 @@ export default async function Home() {
             <RevealOnScroll>
                 <section id="clients">
                     <ClientsSection/>
+                </section>
+            </RevealOnScroll>
+            <RevealOnScroll>
+                <section id="contactus">
+                    <ContactUsSection />
                 </section>
             </RevealOnScroll>
             
