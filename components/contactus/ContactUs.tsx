@@ -4,7 +4,7 @@ const ContactUs = ()=>{
     return (
         <>
 
-        {/* <div className="w-full md:w-[98%] m-0 my-4 md:m-4 flex flex-wrap items-center justify-center">
+        <div className="w-full md:w-[98%] m-0 my-4 md:m-4 flex flex-wrap items-center justify-center">
             <div className="relative mt-1 h-20 w-20 flex-shrink-0 mb-0 rounded-full shadow-sm">
                 <Link href={`https://twitter.com/eekeyguy_eth`}>
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="60" height="60" viewBox="0 0 50 50">
@@ -20,7 +20,7 @@ const ContactUs = ()=>{
                 </svg>
                 </Link>
             </div>
-        </div> */}
+        </div>
         </>
     );
 };
