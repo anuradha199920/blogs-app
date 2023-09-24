@@ -24,7 +24,9 @@ export default function Archive({ initialposts }:{ initialposts: Post[]}) {
     const [isFirstPage, setIsFirstPage] = useState(false);
     const [isLastPage, setIsLastPage] = useState(false);
 
-    const paramsForQuery = [ (pageIndex - 1) * POSTS_PER_PAGE,POSTS_PER_PAGE]
+    const paramsForQuery = {
+      skip: (pageIndex - 1) * POSTS_PER_PAGE,
+      first: POSTS_PER_PAGE}
   
     const {
       data: posts,

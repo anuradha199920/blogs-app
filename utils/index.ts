@@ -4,18 +4,6 @@ import { Post, DuneDashboard, Client} from "@/components";
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!;
 const duneAPI = process.env.DUNE_API!;
 
-export async function fetchDuneData(queryId: string){
-    try{
-        const response = await fetch(duneAPI.replace('queryId', queryId), { next: { revalidate: 3600*6 } });
-        if (!response.ok) {
-            throw new Error('Failed to fetch data')
-          }
-        return await response.json();
-    }catch(err){
-        console.error(err);
-    }
-}
-
 export async function fetchDuneGraphs(){
     try{
         const document = gql`query DuneGraphs {
@@ -129,7 +117,7 @@ export async function fetchPostDetails(slug: String): Promise<Post>{
     return result.post;
 }
 
-export async function fetchPaginatedPosts([skip , first]: Number[]){
+export async function fetchPaginatedPosts({skip , first}: {skip: number, first: number}){
 
     try{
         const document = gql`
