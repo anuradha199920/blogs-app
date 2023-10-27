@@ -43,15 +43,11 @@ const mobilemenu = [
                 </div>
               </div>
               <div className="flex w-full justify-between md:w-auto">
-                {/* <div className="relative h-8 w-8 flex-shrink-0">
-                    <Link href="https://media.graphassets.com/kjDrozpSScypnIkI8mlG">
-                        <Image alt={"eekeyguy_eth"} loading="lazy" decoding="async" data-nimg="fill" className="rounded-full object-cover bg-transparent h-full w-full absolute inset-0" sizes="100vw" src={"https://media.graphassets.com/kjDrozpSScypnIkI8mlG"} width={'100'} height={'100'}/>
-                    </Link>
-                </div> */}
+                
                 <div className="relative h-25 w-25 flex-shrink-0 shadow-md rounded-full ">
                   <Link href={`https://twitter.com/eekeyguy_eth`}>
                       <Image
-                          src={"https://media.graphassets.com/KnjCa1K9QI25i623uAF6"}
+                          src={"https://media.graphassets.com/jOnwtOcnSr6y9PcBkc7m"}
                           alt={"Eekeyguy"}
                           fill
                           className="rounded-full object-cover fill"
